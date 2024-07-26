@@ -1,0 +1,83 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:lightgrey;
+    color: #333;
+}
+
+.PrimerIMG {
+    text-align: center;
+    margin: 20px 0;
+}
+
+    .PrimerIMG img {
+        width: 100%;
+        max-width: 600px; /* Ensure the images are of the same maximum width */
+        height: auto; /* Maintain aspect ratio */
+    }
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+header {
+    background-color:royalblue;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+    .logo img {
+        height: 50px;
+        margin-right: 10px;
+    }
+
+nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+.intro, .services {
+    background-color: #fff;
+    margin: 30px 0;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center text inside these sections */
+}
+
+h2, h3, h4 {
+    color: #003366;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        margin-top: 10px;
+    }
+
+    .container {
+        width: 100%;
+    }
+}
