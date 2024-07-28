@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,8 +42,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Autenticacion.cs" />
+    <Compile Include="NegocioAdministradores.cs" />
     <Compile Include="NegocioClientes.cs" />
+    <Compile Include="NegocioClientes_X_Motos.cs" />
+    <Compile Include="NegocioDia.cs" />
+    <Compile Include="NegocioHistorial.cs" />
+    <Compile Include="NegocioHora.cs" />
+    <Compile Include="NegocioMotos.cs" />
+    <Compile Include="NegocioServicios.cs" />
+    <Compile Include="NegociosHistorial_X_Servicios.cs" />
+    <Compile Include="NegociosTurnos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dao\Dao.csproj">
+      <Project>{B56779AE-1A61-4F59-AEE8-EADD4535BA7C}</Project>
+      <Name>Dao</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

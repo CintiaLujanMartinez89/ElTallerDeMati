@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConexionBD.cs" />
+    <Compile Include="DaoAdministradores.cs" />
     <Compile Include="DaoClientes.cs" />
+    <Compile Include="DaoClientes_X_Motos.cs" />
+    <Compile Include="DaoDia.cs" />
+    <Compile Include="DaoHistorial.cs" />
+    <Compile Include="DaoHistorial_X_Servicios.cs" />
+    <Compile Include="DaoHora.cs" />
+    <Compile Include="DaoMotos.cs" />
+    <Compile Include="DaoServicios.cs" />
+    <Compile Include="DaoTurnos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

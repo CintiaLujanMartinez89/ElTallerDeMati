@@ -13,7 +13,7 @@
 
     .PrimerIMG img {
         width: 100%;
-        max-width: 600px; /* Ensure the images are of the same maximum width */
+        max-width: 500px; /* Ensure the images are of the same maximum width */
         height: auto; /* Maintain aspect ratio */
     }
 
@@ -52,7 +52,7 @@ nav a {
     }
 
 .intro, .services {
-    background-color: #fff;
+    background-color:aliceblue;
     margin: 30px 0;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
