@@ -57,11 +57,6 @@
                             </asp:RadioButtonList>
                         </td>
                         <td>
-                            <asp:Label ID="Label3" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Dni:"></asp:Label>
-                            <br />
-                            <asp:TextBox ID="txtDni" runat="server" TextMode="Number"></asp:TextBox>
-                            <br />
-                            <br />
                             <asp:Label ID="Label4" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Patente:"></asp:Label>
                             <br />
                             <asp:TextBox ID="txtPatente" runat="server"></asp:TextBox>
@@ -69,7 +64,7 @@
                             <br />
                             <asp:Label ID="Label5" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Servicio:"></asp:Label>
                             <br />
-                            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Nombre_S" DataValueField="Id_Servicio_S">
+                            <asp:DropDownList ID="ddlServicios" runat="server" DataSourceID="SqlDataSource1" DataTextField="Nombre_S" DataValueField="Id_Servicio_S">
                             </asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:El_TALLER_DE_MATIConnectionString %>" SelectCommand="SELECT [Id_Servicio_S], [Nombre_S] FROM [SERVICIOS]"></asp:SqlDataSource>
                             <br />

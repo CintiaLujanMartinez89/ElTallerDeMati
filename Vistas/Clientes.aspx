@@ -81,7 +81,7 @@
                 <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Underline="True" ForeColor="#0033CC" Text="MIS TURNOS"></asp:Label>
                 <br />
                 <br />
-                <asp:Button ID="btnSolicitarTurno" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Solicitar Turno" />
+                <asp:Button ID="btnSolicitarTurno" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Solicitar Turno" PostBackUrl="~/ReservarTurno.aspx" />
                 <br />
                 <br />
                 <div class="gv-container">

@@ -15,7 +15,7 @@ namespace Entidades
 		Clientes cliente;
 		Motos moto;
 		Servicios servicios;
-		bool asistencia=false;
+		
 
         public Turnos() { }
 
@@ -25,6 +25,6 @@ namespace Entidades
         public Clientes cliente1 { get => cliente; set => cliente = value; }
         public Motos moto1 { get => moto; set => moto = value; }
         public Servicios servicios1 { get => servicios; set => servicios = value; }
-        public bool asistencia1 { get => asistencia; set => asistencia = value; }
+      
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace Vistas
 {
@@ -15,13 +16,14 @@ namespace Vistas
         NegocioTurnos NT = new NegocioTurnos();
 
         protected List<DateTime> diasDisponibles;
-
+        string usuarioLogueado;
+        string dniLogueado;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string usuarioLogueado = Session["Usuario"] as string;
-                string dniLogueado = Session["Dni"] as string;
+                usuarioLogueado = Session["Usuario"] as string;
+                dniLogueado = Session["Dni"] as string;
 
                 // Mostrar los valores obtenidos de la sesión
                 lblUsuarioLogueado.Text = "Bienvenida/o " + usuarioLogueado;
@@ -38,6 +40,7 @@ namespace Vistas
 
         }
 
+       
         protected void clTurnosDisponibles_DayRender(object sender, DayRenderEventArgs e)
         {
             if (!diasDisponibles.Contains(e.Day.Date))
@@ -66,11 +69,31 @@ namespace Vistas
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string Dia = clTurnosDisponibles.SelectedDate.ToShortDateString();
-            string Hora= rbHorarios.SelectedValue.ToString();
-            string Patente = txtPatente.ToString();
-            //int fila = NT.ReservarTurno();
+            if (clTurnosDisponibles.SelectedDate == DateTime.MinValue)
+            {
+                // Manejar el caso en que no se seleccionó una fecha
+                Console.WriteLine("Por favor, seleccione una fecha.");
+                return;
+            }
+
+            DateTime diaSeleccionado = clTurnosDisponibles.SelectedDate;
+            TimeSpan horaSeleccionada;
+            if (!TimeSpan.TryParse(rbHorarios.SelectedValue.ToString(), out horaSeleccionada))
+            {
+                // Manejar el caso en que la hora no es válida
+                Console.WriteLine("Por favor, seleccione una hora válida.");
+                return;
+            }
+
+            string patente = txtPatente.Text;
+            string servicio = ddlServicios.SelectedValue.ToString();
+            string observacion = txtComentario.Text;
+            string dniLogueado = Session["Dni"] as string;
+
+            int fila = NT.ReservarTurno(diaSeleccionado, horaSeleccionada, dniLogueado, patente, servicio, observacion);
+
         }
+
         //SI EL LOGIN== NULL REDIRECCIONAR A INGRESAR.ASPX
     }
 }

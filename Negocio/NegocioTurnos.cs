@@ -15,5 +15,10 @@ namespace Negocio
         {
             return DT.ObtenerTabla(dni);
         }
+
+        public int ReservarTurno(DateTime dia, TimeSpan hora, string dni, string patente, string servicio, string observacion)
+        {
+            return DT.ReservarTURNO(dia, hora,dni,patente,servicio,observacion);
+        }
     }
 }
