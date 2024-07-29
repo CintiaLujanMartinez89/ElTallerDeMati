@@ -11,7 +11,15 @@ namespace Vistas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                string usuarioLogueado = Session["Usuario"] as string;
+                string dniLogueado = Session["Dni"] as string;
 
+                // Mostrar los valores obtenidos de la sesión
+                lblUsuarioLogueado.Text = "Bienvenida/o " + usuarioLogueado;
+
+            }
         }
     }
 }

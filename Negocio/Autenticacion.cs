@@ -20,14 +20,10 @@ namespace Negocio
                 string query = "SELECT HashContraseña_CLI FROM Clientes WHERE Dni_CLI = @Dni";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Dni", dni);
-
+              
                 string hashContraseñaAlmacenada = (string)command.ExecuteScalar();
-                string hashContraseñaIngresada = Seguridad.HashearContraseña(contraseñaIngresada);
-
-                MessageBox.Show("Contraseña en BD: " + hashContraseñaAlmacenada +"A"+ "    " + "Contraseña ingresada (hash): " + hashContraseñaIngresada + "A");
-
                 
-                return hashContraseñaAlmacenada == hashContraseñaIngresada;
+                return hashContraseñaAlmacenada == contraseñaIngresada;
             }
         }
 

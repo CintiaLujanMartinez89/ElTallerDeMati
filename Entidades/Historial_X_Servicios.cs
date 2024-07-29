@@ -8,14 +8,20 @@ namespace Entidades
 {
    public  class Historial_X_Servicios { 
 	
-	 Historial historial;
-	 Servicios servicio;
-	 Dia dia;
+	string idHistorial;
+        string dni;
+        string patente;
+        string idServicio;
+        DateTime Fecha_Realizacion;
 	 int kilometraje;
 
-        public Historial Historial1 { get => historial; set => historial = value; }
-        public Servicios Servicio1 { get => servicio; set => servicio = value; }
-        public Dia Dia1 { get => dia; set => dia = value; }
-        public int Kilometraje1 { get => kilometraje; set => kilometraje = value; }
+        public Historial_X_Servicios() { }
+
+        public string idHistorial1 { get => idHistorial; set => idHistorial = value; }
+        public string dni1 { get => dni; set => dni = value; }
+        public string patente1 { get => patente; set => patente = value; }
+        public string idServicio1 { get => idServicio; set => idServicio = value; }
+        public DateTime fecha_Realizacion1 { get => Fecha_Realizacion; set => Fecha_Realizacion = value; }
+        public int kilometraje1 { get => kilometraje; set => kilometraje = value; }
     }
 }

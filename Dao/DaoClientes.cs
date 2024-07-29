@@ -21,7 +21,7 @@ namespace Dao
         {
             using (SqlConnection connection = cn.ObtenerConexion())
             {
-                string query = "SELECT Nombre_CLI FROM Clientes WHERE Dni_CLI = @Dni";
+                string query = "SELECT Nombre_CLI + ' '+ Apellido_CLI as Nombre_CLI  FROM Clientes WHERE Dni_CLI = @Dni";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Dni", dni);
 

@@ -20,7 +20,7 @@
     <form id="form1" runat="server">
         <header>
             <div class="logo">
-                <img src="Imagenes/logo.png" alt="Logo">
+                <img src="Imagenes/logo.png" alt="Logo"/>
                 <h1>El Taller de Mati</h1>
             </div>
             <nav>
@@ -46,7 +46,7 @@
                 <asp:Label ID="Label10" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Patente:"></asp:Label>
                         </td>
                         <td class="auto-style8">
-                <asp:TextBox ID="txtPatente" runat="server" ValidationGroup="g1" TextMode="Number"></asp:TextBox>
+                <asp:TextBox ID="txtPatente" runat="server" ValidationGroup="g1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -76,8 +76,12 @@
                 </table>
                 <br />
                 <br />
-                 <asp:Button ID="btnSolicitarTurno" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Agregar" ValidationGroup="g1" />
+                 <asp:Button ID="btnSolicitarTurno" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Agregar" ValidationGroup="g1" OnClick="btnSolicitarTurno_Click" />
                 <br />
+                <br />
+        
+             
+                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
         
              
             </section>

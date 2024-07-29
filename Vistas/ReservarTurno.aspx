@@ -12,6 +12,9 @@
         .auto-style1 {
             width: 100%;
         }
+        .auto-style9 {
+            width: 188px;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +41,7 @@
                 <table class="auto-style1">
                     <tr>
                         <td>
-                            <asp:Calendar ID="clTurnosDisponibles" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="230px" Width="339px">
+                            <asp:Calendar ID="clTurnosDisponibles" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="230px" Width="339px" OnDayRender="clTurnosDisponibles_DayRender" OnSelectionChanged="clTurnosDisponibles_SelectionChanged">
                                 <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
                                 <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
                                 <OtherMonthDayStyle ForeColor="#999999" />
@@ -49,7 +52,7 @@
                                 <WeekendDayStyle BackColor="#CCCCFF" />
                             </asp:Calendar>
                         </td>
-                        <td>
+                        <td class="auto-style9">
                             <asp:RadioButtonList ID="rbHorarios" runat="server">
                             </asp:RadioButtonList>
                         </td>
@@ -59,6 +62,17 @@
                             <asp:TextBox ID="txtDni" runat="server" TextMode="Number"></asp:TextBox>
                             <br />
                             <br />
+                            <asp:Label ID="Label4" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Patente:"></asp:Label>
+                            <br />
+                            <asp:TextBox ID="txtPatente" runat="server"></asp:TextBox>
+                            <br />
+                            <br />
+                            <asp:Label ID="Label5" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Servicio:"></asp:Label>
+                            <br />
+                            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Nombre_S" DataValueField="Id_Servicio_S">
+                            </asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:El_TALLER_DE_MATIConnectionString %>" SelectCommand="SELECT [Id_Servicio_S], [Nombre_S] FROM [SERVICIOS]"></asp:SqlDataSource>
+                            <br />
                             <asp:Label ID="Label2" runat="server" Text="Ingresar Comentario (EJ: &quot;Deseo llevar el aceite&quot;):"></asp:Label>
                             <br />
                             <asp:TextBox ID="txtComentario" runat="server" TextMode="MultiLine"></asp:TextBox>
@@ -66,8 +80,10 @@
                     </tr>
                 </table>
                 <br />
+                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
                 <br />
-                <asp:Button ID="Button1" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Reservar" />
+                <br />
+                <asp:Button ID="Button1" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Reservar" OnClick="Button1_Click" />
                 <br />
         
              

@@ -1,9 +1,21 @@
-﻿body {
+﻿/* styles.css */
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color:lightgrey;
+    background-color: lightgrey;
     color: #333;
+}
+
+.gv-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.Gv {
+    display: inline-block;
+    margin: 0 auto;
+    width: 80%; /* Ajusta el tamaño según sea necesario */
 }
 
 .PrimerIMG {
@@ -23,7 +35,7 @@
 }
 
 header {
-    background-color:royalblue;
+    background-color: royalblue;
     color: #fff;
     padding: 10px 0;
     display: flex;
@@ -52,7 +64,7 @@ nav a {
     }
 
 .intro, .services {
-    background-color:aliceblue;
+    background-color: aliceblue;
     margin: 30px 0;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -67,6 +79,29 @@ ul {
     list-style-type: disc;
     margin-left: 20px;
 }
+
+/* Centra la tabla en la página */
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 60%; /* Ajusta el ancho según sea necesario */
+}
+
+    /* Centra el contenido de las celdas */
+    table td, table th {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+/* Aplica estilo a las celdas */
+.auto-style7 {
+    padding: 10px; /* Ajusta el padding según sea necesario */
+}
+
+.auto-style8 {
+    padding: 10px; /* Ajusta el padding según sea necesario */
+}
+
 
 @media (max-width: 600px) {
     header {

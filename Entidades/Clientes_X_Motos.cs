@@ -8,12 +8,12 @@ namespace Entidades
 {
     public class Clientes_X_Motos
     {
-        Clientes cliente;
-        Motos moto;
+       string dni;
+        string patente;
 
         public Clientes_X_Motos() { }
 
-        public Clientes cliente1 { get => cliente; set => cliente = value; }
-        public Motos moto1 { get => moto; set => moto = value; }
+        public string dni1 { get => dni; set => dni = value; }
+        public string patente1 { get => patente; set => patente = value; }
     }
 }

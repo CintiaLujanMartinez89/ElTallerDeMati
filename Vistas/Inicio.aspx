@@ -43,7 +43,7 @@
                 <a href="#">
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Ingresar.aspx">Ingresar</asp:HyperLink>
                 <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Registrarse.aspx">Registrarse</asp:HyperLink>
-                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/ReservarTurno.aspx">Solicitar Turno</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Ingresar.aspx">Solicitar Turno</asp:HyperLink>
                 </a>&nbsp;</nav>
         </header>
         <div class="container">
@@ -53,12 +53,12 @@
                     <img src="Imagenes/imagenInicial.png" alt="ImagenInicial" class="auto-style4" />
                       </div>
 
-                </h3>
+              
                 <p><span class="auto-style8"><strong>El Taller de Mati</strong>: un nombre en el que puedes confiar</p>
-                <p>Servicio rápido, profesional y confiable</span></p>
+                <p>Servicio rápido, profesional y confiable</p></span>
             </section>
             <section class="services">
-                <h2><span class="auto-style6">A tu servicio</h2>
+                <h2>A tu servicio</h2>
                 <h3 class="auto-style7">Reparaciones necesarias para alargar la vida útil de tu moto</h3>
              
                      <div class="PrimerIMG">
@@ -100,7 +100,7 @@
                     <table class="auto-style2">
                         <tr>
                             <td class="auto-style3">
-                    <img src="Imagenes/sistema-embrague-moticletaIMG.jpg" alt="ImagenInicial" ></td>
+                    <img src="Imagenes/sistema-embrague-moticletaIMG.jpg" alt="ImagenInicial" /></td>
                             <td>
                     <h4 class="auto-style7"><strong>Regulación de embrague</strong></h4>
                     <p>La regulación del embrague en una moto es esencial para asegurar un funcionamiento suave y eficiente del sistema de transmisión. Las razones principales para realizar este servicio:</p>

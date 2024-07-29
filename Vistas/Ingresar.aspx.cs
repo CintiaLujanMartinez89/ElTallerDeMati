@@ -12,14 +12,16 @@ namespace Vistas
 {
     public partial class Ingresar : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
+       
 
-       DaoClientes cli = new DaoClientes();
+       DaoClientes DC = new DaoClientes();
         Autenticacion autenticacion = new Autenticacion();
-        NegocioClientes cliente = new NegocioClientes();
+        NegocioClientes NC = new NegocioClientes();
 
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -27,23 +29,31 @@ namespace Vistas
             string dni = txtDni.Text;
             string contraseña = txtPassword.Text;
             string usuario;
-
-        
-
+           
+            string hashContraseñaIngresada = Seguridad.HashearContraseña(contraseña);
+           
             // Verificar las credenciales del usuario
-            bool credencialesValidas = autenticacion.VerificarCredenciales(dni, contraseña);
-
+            bool credencialesValidas = autenticacion.VerificarCredenciales(dni, hashContraseñaIngresada);
+            
             if (credencialesValidas==true)
             {
-                // Aquí puedes redirigir a la página Clientes.aspx
-                  Response.Redirect("Clientes.aspx");
+                usuario = NC.Buscar(dni);
+
+                // Almacenar datos en la sesión
+                Session["Usuario"] = usuario;
+                Session["Dni"] = dni;
+
+
                 MessageBox.Show("Credenciales válidas.");
-                usuario = cliente.Buscar(dni);
-                // Muestra el nombre del usuario en un label o cualquier otro control
-                Label3.Text = usuario;
+
+                Response.Redirect("Clientes.aspx");           
+                              
             }
             else
             {
+                txtDni.Text = "";
+                txtPassword.Text = "";
+               
                 MessageBox.Show("Credenciales inválidas.");
             }
         }

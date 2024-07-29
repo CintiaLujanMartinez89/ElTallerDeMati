@@ -22,7 +22,7 @@
     <form id="form1" runat="server">
         <header>
             <div class="logo">
-                <img src="Imagenes/logo.png" alt="Logo">
+                <img src="Imagenes/logo.png" alt="Logo"/>
                 <h1>El Taller de Mati</h1>
             </div>
             <nav>
