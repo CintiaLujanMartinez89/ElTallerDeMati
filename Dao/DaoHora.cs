@@ -11,17 +11,18 @@ namespace Dao
     {
         ConexionBD cn = new ConexionBD();
 
-            public List<TimeSpan> ObtenerHorasDisp()
+            public List<TimeSpan> ObtenerHorasDisp(DateTime fechaSeleccionada)
             {
                 List<TimeSpan> horasDisponibles = new List<TimeSpan>();
 
-                string query = "SELECT Hora_H FROM HORA";
+                string query =@"SELECT Hora_H FROM HORA WHERE Hora_H NOT IN( SELECT Hora_T FROM TURNOS WHERE Dia_T = @Dia)";
 
                 using (SqlConnection conexion = cn.ObtenerConexion())
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conexion))
                     {
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                    cmd.Parameters.AddWithValue("@Dia", fechaSeleccionada);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {

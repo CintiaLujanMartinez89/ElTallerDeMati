@@ -41,15 +41,14 @@
                 <table class="auto-style1">
                     <tr>
                         <td>
-                            <asp:Calendar ID="clTurnosDisponibles" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="230px" Width="339px" OnDayRender="clTurnosDisponibles_DayRender" OnSelectionChanged="clTurnosDisponibles_SelectionChanged">
-                                <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-                                <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
+                            <asp:Calendar ID="clTurnosDisponibles" runat="server" BackColor="White" BorderColor="Black" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="250px" Width="330px" OnDayRender="clTurnosDisponibles_DayRender" OnSelectionChanged="clTurnosDisponibles_SelectionChanged" BorderStyle="Solid" CellSpacing="1" NextPrevFormat="ShortMonth">
+                                <DayHeaderStyle ForeColor="#333333" Height="8pt" Font-Bold="True" Font-Size="8pt" />
+                                <DayStyle BackColor="#CCCCCC" />
+                                <NextPrevStyle Font-Size="8pt" ForeColor="White" Font-Bold="True" />
                                 <OtherMonthDayStyle ForeColor="#999999" />
-                                <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                                <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
-                                <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-                                <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-                                <WeekendDayStyle BackColor="#CCCCFF" />
+                                <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                                <TitleStyle BackColor="#333399" Font-Bold="True" Font-Size="12pt" ForeColor="White" Height="12pt" BorderStyle="Solid" />
+                                <TodayDayStyle BackColor="#999999" ForeColor="White" />
                             </asp:Calendar>
                         </td>
                         <td class="auto-style9">
@@ -64,8 +63,9 @@
                             <br />
                             <asp:Label ID="Label5" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Servicio:"></asp:Label>
                             <br />
-                            <asp:DropDownList ID="ddlServicios" runat="server" DataSourceID="SqlDataSource1" DataTextField="Nombre_S" DataValueField="Id_Servicio_S">
-                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlServicios" runat="server" DataSourceID="SqlDataSource1" DataTextField="Nombre_S" DataValueField="Id_Servicio_S" AppendDataBoundItems="True">
+                            <asp:ListItem Text="--Seleccionar--" Value="0"></asp:ListItem>
+                                </asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:El_TALLER_DE_MATIConnectionString %>" SelectCommand="SELECT [Id_Servicio_S], [Nombre_S] FROM [SERVICIOS]"></asp:SqlDataSource>
                             <br />
                             <asp:Label ID="Label2" runat="server" Text="Ingresar Comentario (EJ: &quot;Deseo llevar el aceite&quot;):"></asp:Label>

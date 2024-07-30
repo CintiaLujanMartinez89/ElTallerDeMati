@@ -54,7 +54,11 @@ namespace Vistas
 
         protected void clTurnosDisponibles_SelectionChanged(object sender, EventArgs e)
         {
-            List<TimeSpan> horasDisponibles = NH.ObtenerHorasDisponibles();
+            DateTime fechaSeleccionada = clTurnosDisponibles.SelectedDate;
+
+            // Aquí llamas a tu método para obtener las horas disponibles pasándole la fecha seleccionada
+            List<TimeSpan> horasDisponibles = NH.ObtenerHorasDisponibles(fechaSeleccionada);
+
             LlenarRadioButtonList(horasDisponibles);
         }
 
@@ -91,6 +95,10 @@ namespace Vistas
             string dniLogueado = Session["Dni"] as string;
 
             int fila = NT.ReservarTurno(diaSeleccionado, horaSeleccionada, dniLogueado, patente, servicio, observacion);
+
+            txtPatente.Text = "";
+            ddlServicios.SelectedValue = "0";
+            txtComentario.Text = "";
 
         }
 

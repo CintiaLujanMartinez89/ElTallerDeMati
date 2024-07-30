@@ -10,9 +10,9 @@ namespace Negocio
   public  class NegocioHora
     {
         DaoHora DH = new DaoHora();
-        public List<TimeSpan> ObtenerHorasDisponibles()
+        public List<TimeSpan> ObtenerHorasDisponibles(DateTime fechaSeleccionada)
         {
-            return DH.ObtenerHorasDisp();
+            return DH.ObtenerHorasDisp(fechaSeleccionada);
         }
     }
 }
