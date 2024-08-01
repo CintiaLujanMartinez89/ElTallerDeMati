@@ -1,4 +1,5 @@
 ﻿using Dao;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-   public class NegocioTurnos
+    public class NegocioTurnos
     {
         DaoTurnos DT = new DaoTurnos();
         public DataTable ObtenerTablaTurnos(string dni)
@@ -18,7 +19,24 @@ namespace Negocio
 
         public int ReservarTurno(DateTime dia, TimeSpan hora, string dni, string patente, string servicio, string observacion)
         {
-            return DT.ReservarTURNO(dia, hora,dni,patente,servicio,observacion);
+            return DT.ReservarTURNO(dia, hora, dni, patente, servicio, observacion);
         }
+
+        public DataTable ObtenerTurnosAsignados()
+        {
+            return DT.ObtenerTablaTurnosAsignados();
+        }
+
+        public int EliminarTurno(Turnos obj)
+        {
+                return DT.Eliminar(obj);
+        }
+
+        public int cambiarAsistencia(string idTurno,string dia,string hora)
+        {
+            return DT.cambiarAsist(idTurno, dia, hora);
+        }
+
+
     }
 }

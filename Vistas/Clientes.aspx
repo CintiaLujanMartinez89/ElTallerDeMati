@@ -22,7 +22,7 @@
             </div>
             <nav>
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Inicio.aspx">Salir</asp:HyperLink>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="lblUsuarioLogueado" runat="server" Font-Bold="True" ForeColor="White"></asp:Label>
             </nav>
         </header>

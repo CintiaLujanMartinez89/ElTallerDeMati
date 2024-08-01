@@ -65,6 +65,10 @@
       <Project>{B56779AE-1A61-4F59-AEE8-EADD4535BA7C}</Project>
       <Name>Dao</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{FF049E6F-F59A-49D6-9784-DA5FF748B04E}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

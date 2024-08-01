@@ -8,5 +8,7 @@ namespace Negocio
 {
    public class NegocioAdministradores
     {
+
+
     }
 }

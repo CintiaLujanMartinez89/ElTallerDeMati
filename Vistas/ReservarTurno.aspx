@@ -27,7 +27,8 @@
             <nav>
                 <a href="#">
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Inicio.aspx">Salir</asp:HyperLink>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Clientes.aspx">Volver</asp:HyperLink>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="lblUsuarioLogueado" runat="server" Font-Bold="True" ForeColor="White">USUARIO LOGUEADO</asp:Label>
                  </a>&nbsp;</nav>
         </header>

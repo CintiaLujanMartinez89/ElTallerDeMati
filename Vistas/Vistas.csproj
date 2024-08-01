@@ -79,6 +79,7 @@
     <Content Include="ReservarTurno.aspx" />
     <Content Include="Servicios.aspx" />
     <Content Include="styles.css" />
+    <Content Include="sweetalert.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,10 @@
     <ProjectReference Include="..\Dao\Dao.csproj">
       <Project>{B56779AE-1A61-4F59-AEE8-EADD4535BA7C}</Project>
       <Name>Dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{FF049E6F-F59A-49D6-9784-DA5FF748B04E}</Project>
+      <Name>Entidades</Name>
     </ProjectReference>
     <ProjectReference Include="..\Negocio\Negocio.csproj">
       <Project>{817DEA63-A2B8-4561-877F-497F576ED013}</Project>

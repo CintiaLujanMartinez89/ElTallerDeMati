@@ -31,6 +31,11 @@
             font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
         }
     </style>
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Incluye tu archivo JavaScript compartido -->
+    <script src="Scripts/sweetalert.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">

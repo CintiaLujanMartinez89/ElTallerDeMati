@@ -10,13 +10,18 @@ body {
 .gv-container {
     text-align: center;
     margin: 20px 0;
+    padding: 0;
 }
 
 .Gv {
     display: inline-block;
+    width: 100%; /* Ajusta el ancho según sea necesario */
+    max-width: 100%; /* Máximo 100% del contenedor */
+    box-sizing: border-box;
     margin: 0 auto;
-    width: 80%; /* Ajusta el tamaño según sea necesario */
+    padding: 0;
 }
+
 
 .PrimerIMG {
     text-align: center;
