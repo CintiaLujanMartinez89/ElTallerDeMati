@@ -22,7 +22,6 @@ body {
     padding: 0;
 }
 
-
 .PrimerIMG {
     text-align: center;
     margin: 20px 0;
@@ -76,6 +75,15 @@ nav a {
     text-align: center; /* Center text inside these sections */
 }
 
+/* Añadir las propiedades de la imagen de fondo a .intro */
+.intro {
+    background-image: url('ImagenesTaller/imgFondo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white; /* Ajusta el color del texto según el fondo */
+}
+
 h2, h3, h4 {
     color: #003366;
 }
@@ -96,17 +104,20 @@ table {
     table td, table th {
         text-align: center;
         vertical-align: middle;
+        padding: 10px; /* Ajusta el padding según sea necesario */
     }
 
-/* Aplica estilo a las celdas */
-.auto-style7 {
-    padding: 10px; /* Ajusta el padding según sea necesario */
+.right-align {
+    text-align: right; /* Alinear el contenido a la derecha */
 }
 
-.auto-style8 {
-    padding: 10px; /* Ajusta el padding según sea necesario */
+.left-align {
+    text-align: left; /* Alinear el contenido a la izquierda */
 }
 
+.center-align {
+    text-align: center; /* Alinear el contenido al centro */
+}
 
 @media (max-width: 600px) {
     header {

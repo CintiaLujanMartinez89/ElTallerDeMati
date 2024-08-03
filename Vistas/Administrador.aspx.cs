@@ -14,19 +14,26 @@ namespace Vistas
     public partial class Administrador : System.Web.UI.Page
     {
         NegocioTurnos NT = new NegocioTurnos();
+        NegocioServicios NS = new NegocioServicios();
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
-                string usuarioLogueado = Session["Usuario"] as string;
-                string dniLogueado = Session["Dni"] as string;
+                // string usuarioLogueado = Session["Usuario"] as string;
+                string usuarioLogueado = "Matias";
+                string dniLogueado = "29315386";//Session["Dni"] as string;
 
                 // Mostrar los valores obtenidos de la sesión
                 lblUsuarioLogueado.Text = "Bienvenida/o " + usuarioLogueado;
-
+           
                 CargarTablaTurnos();
-            }
-
+                CargarTablaServicios();
+           }
+            
         }
 
         public void CargarTablaTurnos()
@@ -34,6 +41,13 @@ namespace Vistas
             DataTable tabla = NT.ObtenerTurnosAsignados();
             gvTurnosAsignados.DataSource = tabla;
             gvTurnosAsignados.DataBind();
+        }
+
+        public void CargarTablaServicios()
+        {
+            DataTable tabla = NS.ObtenerServicios();
+            gvServicios.DataSource = tabla;
+            gvServicios.DataBind();
         }
 
         protected void gvTurnosAsignados_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -117,7 +131,35 @@ namespace Vistas
             }
 
             CargarTablaTurnos();
-        } 
+        }
 
+        protected void btnAgregarServicio_Click(object sender, EventArgs e)
+        {
+            Session["Usuario"] = "Matias";
+            Session["Dni"] = "29315386";
+
+            Response.Redirect("Servicios.aspx");
+        }
+
+        protected void btnAsignarTurno_Click(object sender, EventArgs e)
+        {
+            Session["Usuario"] = "Matias"; 
+            Session["Dni"] = "29315386";
+            Response.Redirect("AgregarMoto.aspx");
+        }
+
+        protected void btnCliXMotos_Click(object sender, EventArgs e)
+        {
+            Session["Usuario"] = "Matias";
+            Session["Dni"] = "29315386";
+            Response.Redirect("ClientesXMotos.aspx");
+        }
+
+        protected void btnIngresarFechas_Click(object sender, EventArgs e)
+        {
+            Session["Usuario"] = "Matias";
+            Session["Dni"] = "29315386";
+            Response.Redirect("IngresarFechas.aspx");
+        }
     }
 }

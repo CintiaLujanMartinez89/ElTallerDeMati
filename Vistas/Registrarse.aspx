@@ -13,7 +13,7 @@
             width: 200px;
         }
         .auto-style3 {
-            width: 489px;
+            width: 525px;
             margin-left: 80px;
         }
         .auto-style5 {
@@ -21,7 +21,11 @@
             margin: 0 auto;
         }
         .auto-style6 {
-            width: 489px;
+            width: 525px;
+        }
+        .auto-style7 {
+            height: 395px;
+            width: 95%;
         }
     </style>
 </head>
@@ -43,7 +47,7 @@
                 <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Underline="True" ForeColor="#0033CC" Text="REGISTRARSE"></asp:Label>
                 <br />
                 <br />
-                <table style="height: 232px">
+                <table class="auto-style7">
                     <tr>
                         <td class="auto-style6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
@@ -108,8 +112,7 @@
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="auto-style6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Label ID="Label9" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Repetir Password:"></asp:Label>
+                        <td class="auto-style6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label9" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Repetir Password:"></asp:Label>
                         </td>
                         <td class="auto-style2">
                             <asp:TextBox ID="txtRepetirPassword" runat="server"></asp:TextBox>

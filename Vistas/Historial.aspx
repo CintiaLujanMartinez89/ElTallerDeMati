@@ -9,7 +9,7 @@
     <style type="text/css">
         .auto-style9 {
             display: inline-block;
-/* Ajusta el ancho según sea necesario */max-width: 100%; /* Máximo 100% del contenedor */;
+/* Ajusta el ancho según sea necesario */max-width: 100%; /* Máximo 100% del contenedor */
             box-sizing: border-box;
             margin: 0 auto 0 0px;
             padding: 0;
@@ -20,7 +20,7 @@
     <form id="form1" runat="server">
         <header>
             <div class="logo">
-                <img src="Imagenes/logo.png" alt="Logo">
+                <img src="Imagenes/logo.png" alt="Logo"/>
                 <h1>El Taller de Mati</h1>
             </div>
             <nav>

@@ -71,9 +71,11 @@
     <Content Include="Administrador.aspx" />
     <Content Include="AgregarMoto.aspx" />
     <Content Include="Clientes.aspx" />
+    <Content Include="ClientesXMotos.aspx" />
     <Content Include="Fechas.aspx" />
     <Content Include="Historial.aspx" />
     <Content Include="Ingresar.aspx" />
+    <Content Include="IngresarFechas.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Registrarse.aspx" />
     <Content Include="ReservarTurno.aspx" />
@@ -104,6 +106,13 @@
     <Compile Include="Clientes.aspx.designer.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ClientesXMotos.aspx.cs">
+      <DependentUpon>ClientesXMotos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientesXMotos.aspx.designer.cs">
+      <DependentUpon>ClientesXMotos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Fechas.aspx.cs">
       <DependentUpon>Fechas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -124,6 +133,13 @@
     </Compile>
     <Compile Include="Ingresar.aspx.designer.cs">
       <DependentUpon>Ingresar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IngresarFechas.aspx.cs">
+      <DependentUpon>IngresarFechas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IngresarFechas.aspx.designer.cs">
+      <DependentUpon>IngresarFechas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
