@@ -40,7 +40,7 @@ namespace Dao
 
         public int EliminarFechadeDisp(DateTime fechaSeleccionada)
         {
-            string consulta = "DELETE FROM Dia_X_HORA WHERE Dia_X_Hora = @Dia";
+            string consulta = "DELETE FROM Dia_X_HORA WHERE Dia_dxh = @Dia";
 
             int fila = 0;
 
@@ -72,7 +72,7 @@ namespace Dao
         {
             List<TimeSpan> horasDisponibles = new List<TimeSpan>();
 
-            string query = @"SELECT Hora_DXH FROM DIA_X_HORA WHERE Hora_DXH NOT IN( SELECT Hora_T FROM TURNOS WHERE Dia_T = @Dia)";
+            string query = @"SELECT Hora_DXH FROM DIA_X_HORA WHERE Hora_DXH NOT IN( SELECT Hora_T FROM TURNOS WHERE Dia_T = @Dia) AND dIA_dxh= @Dia";
 
             using (SqlConnection conexion = cn.ObtenerConexion())
             {

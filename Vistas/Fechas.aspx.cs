@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
 
 namespace Vistas
 {
@@ -31,6 +32,7 @@ namespace Vistas
 
                 diasDisponibles = NDXH.ObtenerDiasDisponibles();
                 Session["DiasDisponibles"] = diasDisponibles; // Guardar en sesión para usar en el evento DayRender
+              
 
             }
             else
@@ -77,8 +79,9 @@ namespace Vistas
         {
             DateTime fechaSeleccionada = clTurnosDisponibles.SelectedDate;
             int fila = NDXH.EliminarFechadeDisponibles(fechaSeleccionada);
+           
 
-            if (fila == 1)
+            if (fila > 0)
             {
                 string message = "Se ELIMINO fecha disponible para Turnos";
                 ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
@@ -93,6 +96,7 @@ namespace Vistas
             }
 
             diasDisponibles = NDXH.ObtenerDiasDisponibles();
+            rbHorarios.Items.Clear();
         }
 
         protected void btnAgregarFecha_Click(object sender, EventArgs e)
@@ -115,20 +119,28 @@ namespace Vistas
                         // Mostrar mensaje según el resultado
                         if (resultado > 0)
                         {
-                            // Registro agregado exitosamente
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Fecha y hora agregadas exitosamente.');", true);
+                            string message = "Fecha y hora agregadas exitosamente.";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
                         }
 
                         else
                         {
-                            // Error al agregar el registro
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Error al agregar la fecha y hora.');", true);
-                        }
+                            string message = "Error al agregar la fecha y hora.";
+                            string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
+                            ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);
+
+                        }    
                     }
+                  
                 }
 
-
             }
+            foreach (ListItem item in chkbHoras.Items)
+            {
+                item.Selected = false;
+            }
+
+            diasDisponibles = NDXH.ObtenerDiasDisponibles();
         }
 
     }
