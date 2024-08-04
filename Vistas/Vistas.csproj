@@ -75,7 +75,6 @@
     <Content Include="Fechas.aspx" />
     <Content Include="Historial.aspx" />
     <Content Include="Ingresar.aspx" />
-    <Content Include="IngresarFechas.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Registrarse.aspx" />
     <Content Include="ReservarTurno.aspx" />
@@ -133,13 +132,6 @@
     </Compile>
     <Compile Include="Ingresar.aspx.designer.cs">
       <DependentUpon>Ingresar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="IngresarFechas.aspx.cs">
-      <DependentUpon>IngresarFechas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="IngresarFechas.aspx.designer.cs">
-      <DependentUpon>IngresarFechas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>

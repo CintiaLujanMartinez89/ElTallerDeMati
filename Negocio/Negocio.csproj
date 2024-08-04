@@ -50,9 +50,8 @@
     <Compile Include="NegocioAdministradores.cs" />
     <Compile Include="NegocioClientes.cs" />
     <Compile Include="NegocioClientes_X_Motos.cs" />
-    <Compile Include="NegocioDia.cs" />
+    <Compile Include="NegocioDia_X_Hora.cs" />
     <Compile Include="NegocioHistorial.cs" />
-    <Compile Include="NegocioHora.cs" />
     <Compile Include="NegocioMotos.cs" />
     <Compile Include="NegocioServicios.cs" />
     <Compile Include="NegocioHistorial_X_Servicios.cs" />

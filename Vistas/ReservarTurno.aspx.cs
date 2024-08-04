@@ -11,8 +11,7 @@ namespace Vistas
 {
     public partial class ReservarTurno : System.Web.UI.Page
     {
-        NegocioDia ND = new NegocioDia();
-        NegocioHora NH = new NegocioHora();
+        NegocioDia_X_Hora NDXH = new NegocioDia_X_Hora();
         NegocioTurnos NT = new NegocioTurnos();
 
         protected List<DateTime> diasDisponibles;
@@ -28,7 +27,7 @@ namespace Vistas
                 // Mostrar los valores obtenidos de la sesión
                 lblUsuarioLogueado.Text = "Bienvenida/o " + usuarioLogueado;
                
-                diasDisponibles = ND.ObtenerDiasDisponibles();
+                diasDisponibles = NDXH.ObtenerDiasDisponibles();
                 Session["DiasDisponibles"] = diasDisponibles; // Guardar en sesión para usar en el evento DayRender
 
                
@@ -57,7 +56,7 @@ namespace Vistas
             DateTime fechaSeleccionada = clTurnosDisponibles.SelectedDate;
 
             // Aquí llamas a tu método para obtener las horas disponibles pasándole la fecha seleccionada
-            List<TimeSpan> horasDisponibles = NH.ObtenerHorasDisponibles(fechaSeleccionada);
+            List<TimeSpan> horasDisponibles = NDXH.ObtenerHorasDisponibles(fechaSeleccionada);
 
             LlenarRadioButtonList(horasDisponibles);
         }

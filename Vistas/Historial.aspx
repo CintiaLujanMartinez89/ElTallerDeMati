@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>El Taller de Mati</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Incluye tu archivo JavaScript compartido -->
+    <script src="sweetalert.js"></script>
     <style type="text/css">
         .auto-style9 {
             display: inline-block;
@@ -50,7 +55,7 @@
                 <br />
                 <br />
                 <div class="gv-container">
-                    <asp:GridView ID="gvHistorial" CssClass="auto-style9" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="750px">
+                    <asp:GridView ID="gvHistorial" CssClass="auto-style9" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="765px" AllowPaging="True" AllowSorting="True">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:TemplateField HeaderText="Dni">

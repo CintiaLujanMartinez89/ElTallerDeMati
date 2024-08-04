@@ -119,6 +119,15 @@ table {
     text-align: center; /* Alinear el contenido al centro */
 }
 
+.auto-style10 {
+    display: inline-block;    /* Ajusta el ancho según sea necesario */ 
+    max-width: 100%; /* Máximo 100% del contenedor */
+
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
 @media (max-width: 600px) {
     header {
         flex-direction: column;

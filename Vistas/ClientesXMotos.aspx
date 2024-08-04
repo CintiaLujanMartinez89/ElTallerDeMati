@@ -8,6 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>El Taller de Mati</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Incluye tu archivo JavaScript compartido -->
+    <script src="sweetalert.js"></script>
     <style type="text/css">
         .auto-style7 {
             width: 574px;

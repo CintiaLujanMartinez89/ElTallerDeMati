@@ -34,6 +34,8 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,7 +48,7 @@
     <Compile Include="DaoAdministradores.cs" />
     <Compile Include="DaoClientes.cs" />
     <Compile Include="DaoClientes_X_Motos.cs" />
-    <Compile Include="DaoDia.cs" />
+    <Compile Include="DaoDia_X_Hora.cs" />
     <Compile Include="DaoHistorial.cs" />
     <Compile Include="DaoHistorial_X_Servicios.cs" />
     <Compile Include="DaoHora.cs" />
