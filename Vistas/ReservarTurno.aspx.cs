@@ -74,27 +74,42 @@ namespace Vistas
         {
             if (clTurnosDisponibles.SelectedDate == DateTime.MinValue)
             {
-                // Manejar el caso en que no se seleccionó una fecha
-                Console.WriteLine("Por favor, seleccione una fecha.");
+          
+                string message = "Por favor, seleccione una fecha.";
+                string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', 'error');", true);  // Manejar el caso en que no se seleccionó una fecha
+
                 return;
             }
 
-            DateTime diaSeleccionado = clTurnosDisponibles.SelectedDate;
+            DateTime diaSeleccionado = clTurnosDisponibles.SelectedDate.Date;
             TimeSpan horaSeleccionada;
             if (!TimeSpan.TryParse(rbHorarios.SelectedValue.ToString(), out horaSeleccionada))
             {
-                // Manejar el caso en que la hora no es válida
-                Console.WriteLine("Por favor, seleccione una hora válida.");
+                string message = "Por favor, seleccione una hora válida.";
+                string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);  // Manejar el caso en que no se seleccionó una fecha
                 return;
             }
+
 
             string patente = txtPatente.Text;
             string servicio = ddlServicios.SelectedValue.ToString();
             string observacion = txtComentario.Text;
             string dniLogueado = Session["Dni"] as string;
-
+            MessageBox.Show(diaSeleccionado.ToString());//+" " +horaSeleccionada.ToString() + " " + dniLogueado + " " + patente + " " + servicio + " " + observacion);
             int fila = NT.ReservarTurno(diaSeleccionado, horaSeleccionada, dniLogueado, patente, servicio, observacion);
-
+            MessageBox.Show(fila.ToString());
+            if (fila >0)
+            {
+                string message = "Se AGREGO con exito el turno";
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
+            }else
+            {
+                string message = "ERROR al agregar Turno";
+                string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);
+            }
             txtPatente.Text = "";
             ddlServicios.SelectedValue = "0";
             txtComentario.Text = "";

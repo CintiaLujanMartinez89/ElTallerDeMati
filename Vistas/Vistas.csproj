@@ -80,7 +80,6 @@
     <Content Include="ReservarTurno.aspx" />
     <Content Include="Servicios.aspx" />
     <Content Include="styles.css" />
-    <Content Include="sweetalert.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

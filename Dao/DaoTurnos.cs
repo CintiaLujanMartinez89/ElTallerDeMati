@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Web.UI;
 
 namespace Dao
 {
@@ -40,13 +41,13 @@ namespace Dao
             using (SqlCommand cmd = new SqlCommand("ReservarTurno", cn.ObtenerConexion()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Dia", dia);
+                cmd.Parameters.AddWithValue("@Dia", dia.Date);
                 cmd.Parameters.AddWithValue("@Hora", hora);
                 cmd.Parameters.AddWithValue("@Dni", dni);
                 cmd.Parameters.AddWithValue("@Patente", patente);
                 cmd.Parameters.AddWithValue("@IdServicio", servicio);
                 cmd.Parameters.AddWithValue("@Observacion", observacion);
-
+                cmd.Parameters.AddWithValue("@Asistencia", '0');
                 try
                 {
                     int fila = cmd.ExecuteNonQuery();

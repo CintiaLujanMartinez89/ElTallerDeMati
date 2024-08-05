@@ -10,21 +10,24 @@ namespace Entidades
     {
 
 		string idTurno;
-		Dia dia;
-		Hora hora;
-		Clientes cliente;
-		Motos moto;
-		Servicios servicios;
+		DateTime dia;
+		TimeSpan hora;
+		string dni;
+        string patente;
+        string idServicio;
+        string observacion;
+        bool asistencia=false;
 		
 
         public Turnos() { }
 
         public string IdTurno { get => idTurno; set => idTurno = value; }
-        public Dia dia1 { get => dia; set => dia = value; }
-        public Hora hora1 { get => hora; set => hora = value; }
-        public Clientes cliente1 { get => cliente; set => cliente = value; }
-        public Motos moto1 { get => moto; set => moto = value; }
-        public Servicios servicios1 { get => servicios; set => servicios = value; }
-      
+        public DateTime Dia { get => dia; set => dia = value; }
+        public TimeSpan Hora { get => hora; set => hora = value; }
+        public string Dni { get => dni; set => dni = value; }
+        public string Patente { get => patente; set => patente = value; }
+        public string IdServicio { get => idServicio; set => idServicio = value; }
+        public string Observacion { get => observacion; set => observacion = value; }
+        public bool Asistencia { get => asistencia; set => asistencia = value; }
     }
 }

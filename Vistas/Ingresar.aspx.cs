@@ -43,9 +43,6 @@ namespace Vistas
                 Session["Usuario"] = usuario;
                 Session["Dni"] = dni;
 
-
-                MessageBox.Show("Credenciales válidas.");
-
                 Response.Redirect("Clientes.aspx");           
                               
             }

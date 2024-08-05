@@ -9,10 +9,18 @@
     <title>El Taller de Mati</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Incluye tu archivo JavaScript compartido -->
-    <script src="sweetalert.js"></script>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>function showAlert(message, icon = 'success') {
+            Swal.fire({
+                text: message,
+                icon: icon,
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: false
+            });
+        }</script> <!-- Asegúrate de que la ruta es correcta -->
+
     <style type="text/css">
         .auto-style1 {
             width: 100%;
