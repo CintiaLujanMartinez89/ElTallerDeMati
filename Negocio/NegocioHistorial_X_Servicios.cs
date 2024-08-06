@@ -1,4 +1,5 @@
 ﻿using Dao;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +12,7 @@ namespace Negocio
       public  class NegocioHistorial_X_Servicios
     {
         DaoHistorial_X_Servicios DHXS = new DaoHistorial_X_Servicios();
+        
         public DataTable ObtenerTablaHistorial()
         {
             return DHXS.ObtenerTablaHisto();
@@ -30,5 +32,17 @@ namespace Negocio
         {
             return DHXS.BuscarXPatente(dni);
         }
+
+        public void guardarHistorial(Historial_X_Servicios obj)
+        {
+            DHXS.guardarHistorialXServicio(obj);
+        }
+
+        public void eliminarHistorialPorTurno(string dni, DateTime dia, string patente)
+        {
+            DHXS.eliminarHistorialPorTurno(dni, dia, patente);
+        }
+
     }
+
 }

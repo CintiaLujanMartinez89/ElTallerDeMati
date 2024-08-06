@@ -98,6 +98,12 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
+         <asp:TemplateField HeaderText="Kilometraje">
+            <ItemTemplate>
+                <asp:TextBox ID="txtKilometraje" runat="server" TextMode="Number"></asp:TextBox>
+            </ItemTemplate>
+        </asp:TemplateField>
+
     </Columns>
     <EditRowStyle BackColor="#2461BF" />
     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

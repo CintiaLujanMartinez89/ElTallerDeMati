@@ -29,8 +29,11 @@ namespace Vistas
                 // Mostrar los valores obtenidos de la sesión
                 lblUsuarioLogueado.Text = "Bienvenida/o " + usuarioLogueado;
 
-            } else {
-                MessageBox.Show("Debe Ingresar o Registrase e Ingresar");
+            } else
+            {
+                string message = "Debe Ingresar o Registrase e Ingresar";
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
+               
                 Response.Redirect("Ingresar.aspx"); }
 
             if (!IsPostBack)

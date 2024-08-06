@@ -1,9 +1,12 @@
 ﻿using System;
+using Entidades;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Windows;
 
 namespace Dao
 {
@@ -12,11 +15,25 @@ namespace Dao
 
         ConexionBD cn = new ConexionBD();
 
-        public void InsertarCliente(string dni, string nombre, string apellido, string domicilio, string telefono, string email, string hashContraseña)
-        {
-
+        public int Agregar(Clientes cli)
+        {  using (SqlCommand cmd = new SqlCommand("spInsertarCliente", cn.ObtenerConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Dni", cli.Dni1);
+                    cmd.Parameters.AddWithValue("@Nombre", cli.Nombre1);
+                cmd.Parameters.AddWithValue("@Apellido", cli.Apellido1);
+                cmd.Parameters.AddWithValue("@Domicilio", cli.Domicilio1);
+                cmd.Parameters.AddWithValue("@Telefono", cli.Telefono1);
+                cmd.Parameters.AddWithValue("@Email", cli.Email1);
+                cmd.Parameters.AddWithValue("@HashContraseña", cli.Contraseña1);
+             
+                int fila = cmd.ExecuteNonQuery();
+                MessageBox.Show(fila.ToString());
+                return fila;
+            }
         }
-
+        
+        
         public string BuscarCliente(string dni)
         {
             using (SqlConnection connection = cn.ObtenerConexion())

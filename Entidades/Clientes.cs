@@ -16,6 +16,7 @@ namespace Entidades
 		string domicilio;
 		string telefono;
 		string email;
+        string contraseña;
 		bool estado=true;
 
         public Clientes() { }
@@ -27,5 +28,6 @@ namespace Entidades
         public string Telefono1 { get => telefono; set => telefono = value; }
         public string Email1 { get => email; set => email = value; }
         public bool Estado1 { get => estado; set => estado = value; }
+        public string Contraseña1 { get => contraseña; set => contraseña = value; }
     }
 }

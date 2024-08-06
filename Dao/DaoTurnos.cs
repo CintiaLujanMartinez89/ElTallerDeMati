@@ -11,7 +11,7 @@ using System.Web.UI;
 
 namespace Dao
 {
-   public class DaoTurnos
+    public class DaoTurnos
     {
         ConexionBD cn = new ConexionBD();
         public DataTable ObtenerTabla(string dni)
@@ -19,7 +19,7 @@ namespace Dao
             string consulta = $"select Patente_Moto_T,Marca_M,Modelo_M,Nombre_S,FORMAT(Dia_T, 'dd/MM/yyyy') as Dia_T,Hora_T from Turnos as t inner join Motos as m on t.Patente_Moto_T = m.Patente_Moto_M inner join SERVICIOS as s on s.Id_Servicio_S = t.Id_Servicio_T Where Dni_T='{dni}'";
             DataTable dt = cn.ObtenerTabla("TURNOS", consulta);
             return dt;
-           
+
         }
 
 
@@ -28,14 +28,14 @@ namespace Dao
             using (SqlCommand cmd = new SqlCommand("dbo.spObtenerTurnosAsignados", cn.ObtenerConexion()))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-               
+
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 return dt;
             }
         }
-           
+
         public int ReservarTURNO(DateTime dia, TimeSpan hora, string dni, string patente, string servicio, string observacion)
         {
             using (SqlCommand cmd = new SqlCommand("ReservarTurno", cn.ObtenerConexion()))
@@ -64,7 +64,7 @@ namespace Dao
 
         public int Eliminar(Turnos obj)
         {
-            
+
             int id = Convert.ToInt32(obj.IdTurno);
 
             using (SqlCommand cmd = new SqlCommand("spEliminar", cn.ObtenerConexion()))
@@ -132,7 +132,58 @@ namespace Dao
                 }
             }
         }
+        public Turnos obtenerTurnoPorId(string idTurno)
+        {
+            string consulta = $"  SELECT [Dia_T],[Hora_T],[Dni_T],[Patente_Moto_T],[Id_Servicio_T],[Observacion_T],[Id_Turno_T] FROM TURNOS WHERE Id_Turno_T='{idTurno}' and Asistencia_T='1'";
+            SqlCommand command = new SqlCommand(consulta, cn.ObtenerConexion());
+            Turnos turno = new Turnos();
 
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+
+                    {
+                        turno.Dia = reader.GetDateTime(reader.GetOrdinal("Dia_T"));
+                        turno.Hora = reader.GetTimeSpan(reader.GetOrdinal("Hora_T"));
+
+                        turno.Dni = reader["Dni_T"].ToString();
+                        turno.Patente = reader["Patente_Moto_T"].ToString();
+                        turno.IdServicio = reader["Id_Servicio_T"].ToString();
+                        turno.Observacion = reader["Observacion_T"].ToString();
+                        turno.IdTurno = reader["Id_Turno_T"].ToString();
+
+
+                    }
+                }
+
+            }
+
+            return turno;
+        }
+
+        public (string dni, string patente) BuscarDnixIdTurno(string idTurno, DateTime dia)
+        {
+            string dni = string.Empty;
+            string patente = string.Empty;
+
+            using (SqlConnection connection = cn.ObtenerConexion())
+            {
        
+                // Usar interpolación de cadenas para la consulta (no recomendado)
+                string consulta = $@"SELECT Dni_T, Patente_Moto_T FROM Turnos WHERE Id_Turno_T = '{idTurno}' AND Dia_T = '{dia:yyyy-MM-dd}'";
+
+                SqlCommand command = new SqlCommand(consulta, connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    dni = reader["Dni_T"].ToString();
+                    patente = reader["Patente_Moto_T"].ToString();
+                }
+            }
+          return (dni, patente);
+        }
     }
 }

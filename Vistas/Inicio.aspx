@@ -34,15 +34,14 @@
             width: 106%;
             height: 314px;
         }
-        .auto-style6 {
-            font-family: "Trebuchet MS";
-            font-weight: normal;
-        }
         .auto-style7 {
             font-weight: normal;
         }
         .auto-style8 {
             font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+        }
+        .auto-style11 {
+            color: black;
         }
     </style>
 
@@ -73,8 +72,8 @@
                       </div>
 
               
-                <p><span class="auto-style8"><strong>El Taller de Mati</strong>: un nombre en el que puedes confiar</p>
-                <p>Servicio rápido, profesional y confiable</p></span>
+                <p><span class="auto-style8"><span class="auto-style11"><strong>El Taller de Mati</strong>: un nombre en el que puedes confiar</span></p>
+                <p class="auto-style11">Servicio rápido, profesional y confiable</p></span>
             </section>
             <section class="services">
                 <h2>A tu servicio</h2>

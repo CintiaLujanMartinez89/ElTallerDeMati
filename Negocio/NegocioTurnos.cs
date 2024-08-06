@@ -37,7 +37,14 @@ namespace Negocio
             return DT.cambiarAsist(idTurno, dia, hora);
         }
 
+       public Turnos obtenerTurnoPorId(string idTurno)
+        {
+            return DT.obtenerTurnoPorId(idTurno);
+        }
      
-
+        public (string dni, string patente) BuscarDnixIdTurno(string idTurno,DateTime dia)
+        {
+            return DT.BuscarDnixIdTurno(idTurno, dia);
+       }
     }
 }

@@ -18,7 +18,7 @@ namespace Dao
         {
             List<DateTime> diasDisponibles = new List<DateTime>();
 
-            string query = "SELECT Dia_DXH FROM DIA_X_HORA";
+            string query = "SELECT Dia_DXH, Hora_DXH FROM DIA_X_HORA WHERE NOT EXISTS(SELECT 1 FROM TURNOS WHERE TURNOS.Dia_T = DIA_X_HORA.Dia_DXH  AND TURNOS.Hora_T = DIA_X_HORA.Hora_DXH )";
 
             using (SqlConnection conexion = cn.ObtenerConexion())
             {

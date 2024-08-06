@@ -1,5 +1,6 @@
 ﻿/* styles.css */
 body {
+  
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -8,6 +9,7 @@ body {
 }
 
 .gv-container {
+    background-image: url('imgFondo.png');
     text-align: center;
     margin: 20px 0;
     padding: 0;
@@ -75,17 +77,9 @@ nav a {
     text-align: center; /* Center text inside these sections */
 }
 
-/* Añadir las propiedades de la imagen de fondo a .intro */
-.intro {
-    background-image: url('ImagenesTaller/imgFondo.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: white; /* Ajusta el color del texto según el fondo */
-}
 
 h2, h3, h4 {
-    color: #003366;
+    color:#003366 ;
 }
 
 ul {

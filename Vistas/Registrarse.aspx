@@ -70,7 +70,9 @@
                         <td class="auto-style2">
                 <asp:TextBox ID="txtDni" runat="server" ValidationGroup="g1" TextMode="Number"></asp:TextBox>
                         </td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDni" ErrorMessage="*Ingresar Dni" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -79,7 +81,9 @@
                         <td class="auto-style2">
                 <asp:TextBox ID="txtNombre" runat="server" ValidationGroup="g1"></asp:TextBox>
                         </td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RFVNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="*Ingresar Nombre" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -88,7 +92,9 @@
                         <td class="auto-style2">
                 <asp:TextBox ID="txtApellido" runat="server" ValidationGroup="g1"></asp:TextBox>
                         </td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RFVApellido" runat="server" ControlToValidate="txtApellido" ErrorMessage="*Ingresar Apellido" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -106,7 +112,9 @@
                         <td class="auto-style2">
                 <asp:TextBox ID="txtTelefono" runat="server" TextMode="Number" ValidationGroup="g1"></asp:TextBox>
                         </td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RFVTelefono" runat="server" ControlToValidate="txtTelefono" ErrorMessage="*Ingresar Telefono" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -115,34 +123,42 @@
                         <td class="auto-style2">
                 <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" ValidationGroup="g1"></asp:TextBox>
                         </td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RFVEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="*Ingresar Email" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Label ID="Label8" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Password:"></asp:Label>
                         </td>
                         <td class="auto-style2">
-                            <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
                         </td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RFVContraseña" runat="server" ControlToValidate="txtPassword" ErrorMessage="*Ingresar Contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style6">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="Label9" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Repetir Password:"></asp:Label>
                         </td>
                         <td class="auto-style2">
-                            <asp:TextBox ID="txtRepetirPassword" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtRepetirPassword" runat="server" TextMode="Password" ValidationGroup="g1"></asp:TextBox>
                         </td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RFVRepContraseña" runat="server" ControlToValidate="txtRepetirPassword" ErrorMessage="*Repetir Contraseña" ForeColor="Red"></asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td class="auto-style6">&nbsp;</td>
                         <td class="auto-style2">&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtPassword" ControlToValidate="txtRepetirPassword" ErrorMessage="*Las Contraseñas no coinciden" ForeColor="Red"></asp:CompareValidator>
+                        </td>
                     </tr>
                 </table>
 &nbsp;&nbsp;
                 <br />
                 <br />
-                <asp:Button ID="Button1" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Ingresar" />
+                <asp:Button ID="btnIngresar" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Ingresar" OnClick="btnIngresar_Click" />
         
             </section>
         </div>

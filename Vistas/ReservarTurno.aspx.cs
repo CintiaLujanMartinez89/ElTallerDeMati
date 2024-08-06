@@ -97,13 +97,14 @@ namespace Vistas
             string servicio = ddlServicios.SelectedValue.ToString();
             string observacion = txtComentario.Text;
             string dniLogueado = Session["Dni"] as string;
-            MessageBox.Show(diaSeleccionado.ToString());//+" " +horaSeleccionada.ToString() + " " + dniLogueado + " " + patente + " " + servicio + " " + observacion);
+          
             int fila = NT.ReservarTurno(diaSeleccionado, horaSeleccionada, dniLogueado, patente, servicio, observacion);
-            MessageBox.Show(fila.ToString());
+          
             if (fila >0)
             {
                 string message = "Se AGREGO con exito el turno";
                 ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
+
             }else
             {
                 string message = "ERROR al agregar Turno";
@@ -113,9 +114,10 @@ namespace Vistas
             txtPatente.Text = "";
             ddlServicios.SelectedValue = "0";
             txtComentario.Text = "";
-
+            clTurnosDisponibles.SelectedDate = DateTime.MinValue; // Deselecciona la fecha en el Calendar
+            ddlServicios.SelectedIndex = -1;
+            diasDisponibles = NDXH.ObtenerDiasDisponibles();
+            Session["DiasDisponibles"] = diasDisponibles;
         }
-
-        //SI EL LOGIN== NULL REDIRECCIONAR A INGRESAR.ASPX
     }
 }

@@ -15,6 +15,8 @@ namespace Vistas
     {
         NegocioTurnos NT = new NegocioTurnos();
         NegocioServicios NS = new NegocioServicios();
+        NegocioHistorial_X_Servicios NHXS = new NegocioHistorial_X_Servicios();
+        NegocioHistorial NH = new NegocioHistorial();
 
 
 
@@ -63,11 +65,14 @@ namespace Vistas
                 string message = "Turno eliminado con exito! ";
                 ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
 
-           //  ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"Swal.fire({{ icon: 'success', title: 'Turno eliminado con exito!', showConfirmButton: true }});", true);
-
+                //  ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"Swal.fire({{ icon: 'success', title: 'Turno eliminado con exito!', showConfirmButton: true }});", true);
+              
 
             }
-            else { MessageBox.Show("Error al eliminar Turno!"); }
+            else { string message="Error al eliminar Turno!";
+                string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);
+            }
 
             CargarTablaTurnos();
         }
@@ -87,23 +92,52 @@ namespace Vistas
                 string dia = ((Label)fila.FindControl("lblDia")).Text;
                 string hora = ((Label)fila.FindControl("lblHora")).Text;
                 string nombre = ((Label)fila.FindControl("lblNombre")).Text;
+                TextBox txtKilometraje = (TextBox)fila.FindControl("txtKilometraje");
 
-                int estado = NT.cambiarAsistencia(idTurno, dia, hora);
-             
-                if (estado == 1)
+                if (txtKilometraje == null)
                 {
-                    string message = "Se CONFIRMO la asistencia del Cliente: " + nombre;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
-                   
+                    string errorMessage = "No se encontró el campo de kilometraje.";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{errorMessage}', 'error');", true);
+                    cBox.Checked = false;
+                    return;
+                }
+
+                // Obtener el valor del TextBox y convertirlo a entero
+                string kilometrajeText = txtKilometraje.Text;
+                if (!int.TryParse(kilometrajeText, out int kilometraje) || kilometraje <= 0)
+                {
+                    string errorMessage = "Por favor, ingrese un kilometraje válido antes de confirmar la asistencia.";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{errorMessage}', 'error');", true);
+                    cBox.Checked = false;
+                    return;
                 }
                 else
                 {
-                    string message = "No se pudo cambiar la Asistencia del Cliente: " + nombre;
-                    string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
-                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);
+
+                    int estado = NT.cambiarAsistencia(idTurno, dia, hora);
+
+                    if (estado == 1)
+                    {
+                        string message = "Se CONFIRMO la asistencia del Cliente: " + nombre;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', 'success');", true);
+
+                        // Enviar info a HistorialXMoto
+                        Historial_X_Servicios obj = new Historial_X_Servicios();
+                        Turnos objTurno = NT.obtenerTurnoPorId(idTurno);
+
+                        obj.dni1 = objTurno.Dni;
+                        obj.patente1 = objTurno.Patente;
+                        obj.idServicio1 = objTurno.IdServicio;
+                        obj.fecha_Realizacion1 = objTurno.Dia;
+                        obj.idHistorial1 = NH.ObtenerIdHistorial(obj.dni1.ToString(), obj.patente1.ToString());
+                       
+                        obj.kilometraje1 = kilometraje;
+                        // Guardar el historial en la base de datos
+                        NHXS.guardarHistorial(obj);
+
+                    }
                 }
             }
-
 
             //Si se desmarca el check
             else
@@ -115,16 +149,22 @@ namespace Vistas
 
 
                 int estado = NT.cambiarAsistencia(idTurno, dia, hora);
-                if (estado == 1)
+                if (estado > 0)
                 {
                     string message = "Se CANCELO la asistencia del Cliente: " + nombre;
                     ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
+                    //eliminar en Historial_X_Servicios
+                    (string dni, string patente) = NT.BuscarDnixIdTurno(idTurno, Convert.ToDateTime(dia));
+
+
+                    NHXS.eliminarHistorialPorTurno(dni, Convert.ToDateTime(dia), patente);
                 }
-                else {
+                else
+                {
                     string message = "No se pudo cambiar la Asistencia del Cliente: " + nombre;
                     string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
                     ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);
-                 
+
                     //   ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{HttpUtility.JavaScriptStringEncode("No se pudo cambiar la Asistencia del Cliente: " + nombre)}', 'error');", true);
 
                 }
