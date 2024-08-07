@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,25 +18,35 @@ namespace Vistas
         NegocioServicios NS = new NegocioServicios();
         NegocioHistorial_X_Servicios NHXS = new NegocioHistorial_X_Servicios();
         NegocioHistorial NH = new NegocioHistorial();
-
-
+        string usuarioLogueado;
+        string dniLogueado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             
             if (!IsPostBack)
             {
-                // string usuarioLogueado = Session["Usuario"] as string;
-                string usuarioLogueado = "Matias";
-                string dniLogueado = "29315386";//Session["Dni"] as string;
-
+               usuarioLogueado = Session["Usuario"] as string;
+              dniLogueado = Session["Dni"] as string;
+                
                 // Mostrar los valores obtenidos de la sesión
                 lblUsuarioLogueado.Text = "Bienvenida/o " + usuarioLogueado;
-           
+
+
+                // Guardar los valores en ViewState para persistencia durante los postbacks
+                ViewState["UsuarioLogueado"] = usuarioLogueado;
+                ViewState["DniLogueado"] = dniLogueado;
+
                 CargarTablaTurnos();
                 CargarTablaServicios();
-           }
-            
+            }
+            else
+            {
+                // Recuperar los valores desde ViewState
+                usuarioLogueado = ViewState["UsuarioLogueado"] as string;
+                dniLogueado = ViewState["DniLogueado"] as string;
+            }
+
         }
 
         public void CargarTablaTurnos()
@@ -175,31 +186,82 @@ namespace Vistas
 
         protected void btnAgregarServicio_Click(object sender, EventArgs e)
         {
-            Session["Usuario"] = "Matias";
-            Session["Dni"] = "29315386";
-
+           Session["Usuario"] = usuarioLogueado;
+            Session["Dni"] = dniLogueado;
             Response.Redirect("Servicios.aspx");
         }
 
         protected void btnAsignarTurno_Click(object sender, EventArgs e)
         {
-            Session["Usuario"] = "Matias"; 
-            Session["Dni"] = "29315386";
-            Response.Redirect("AgregarMoto.aspx");
+           
+            Session["Usuario"] = usuarioLogueado;
+            Session["Dni"] = dniLogueado;
+          
+            Response.Redirect("ReservarTurno.aspx");
+
         }
 
         protected void btnCliXMotos_Click(object sender, EventArgs e)
         {
-            Session["Usuario"] = "Matias";
-            Session["Dni"] = "29315386";
+            Session["Usuario"] = usuarioLogueado;
+            Session["Dni"] = dniLogueado;
             Response.Redirect("ClientesXMotos.aspx");
         }
 
         protected void btnIngresarFechas_Click(object sender, EventArgs e)
         {
-            Session["Usuario"] = "Matias";
-            Session["Dni"] = "29315386";
+            Session["Usuario"] = usuarioLogueado;
+            Session["Dni"] = dniLogueado;
+
             Response.Redirect("Fechas.aspx");
+        }
+
+        protected void gvServicios_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string idServicio = ((Label)gvServicios.Rows[e.RowIndex].FindControl("lblIdServicio")).Text;
+            Entidades.Servicios obj = new Entidades.Servicios();
+            obj.id_Servicio1 = idServicio;
+           int fila= NS.EliminarServicio(obj);
+           if (fila > 0)
+            {
+               
+                string message = "Se Elimino Servicio!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
+                CargarTablaServicios();
+            }
+            
+        }
+
+        protected void gvServicios_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvServicios.EditIndex = e.NewEditIndex;
+            CargarTablaServicios();
+        }
+
+        protected void gvServicios_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            //BUSCAR LOS DATOS DEL EDITITEMTEMPLATED
+            string id = ((Label)gvServicios.Rows[e.RowIndex].FindControl("lbletIdServicio")).Text;
+            string nombre= ((TextBox)gvServicios.Rows[e.RowIndex].FindControl("txtetNombre")).Text;
+            string detalle= ((TextBox)gvServicios.Rows[e.RowIndex].FindControl("txtetDetalle")).Text;
+          string precio= ((TextBox)gvServicios.Rows[e.RowIndex].FindControl("txtetPrecio")).Text;
+
+            Entidades.Servicios obj = new Entidades.Servicios();
+            obj.id_Servicio1 = id;
+            obj.nombre1 = nombre;
+            obj.detalle1 = detalle;
+            obj.precio1 = float.Parse(precio, CultureInfo.InvariantCulture);
+
+            NS.ActualizarServicio(obj);
+
+            gvServicios.EditIndex = -1;
+            CargarTablaServicios();
+        }
+
+        protected void gvServicios_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvServicios.EditIndex = -1;
+            CargarTablaServicios();
         }
     }
 }

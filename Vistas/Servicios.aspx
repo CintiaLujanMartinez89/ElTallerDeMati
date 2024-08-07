@@ -93,7 +93,7 @@
                  <br />
                  <br />
 
-                 <asp:Button ID="btnAgregar" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Agregar" ValidationGroup="g1" />
+                 <asp:Button ID="btnAgregar" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Agregar" ValidationGroup="g1" OnClick="btnAgregar_Click" />
                  <br />
                  <br />
         

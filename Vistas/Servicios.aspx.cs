@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,7 @@ namespace Vistas
     {
         string usuarioLogueado;
         string dniLogueado;
+        NegocioServicios NS = new NegocioServicios();
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
@@ -37,6 +39,43 @@ namespace Vistas
             {
                
             }
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            string idServicio = "S" + txtId.Text.ToString();
+            string nombre = txtNombre.Text.ToString();
+            string descripcion = txtDescripcion.Text.ToString();
+            float precio;
+            if (float.TryParse(txtPrecio.Text, out precio))
+            {
+                int fila = NS.AgregarServicio(idServicio, nombre, descripcion, precio);
+                if (fila > 0)
+                {
+                    string message = "Se Agrego Servicio!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
+
+                    txtId.Text = "";
+                    txtNombre.Text = "";
+                    txtDescripcion.Text = "";
+                    txtPrecio.Text = "";
+                
+
+
+                }else
+                {
+                    string message = "Error al ingresar Servicio";
+                    string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);
+                }
+            }
+            else
+            {
+                string message = "No se pudo ingresar Servicio, error en atributo Precio";
+                string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);
+            }
+
         }
     }
 }

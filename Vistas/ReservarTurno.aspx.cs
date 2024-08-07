@@ -26,17 +26,38 @@ namespace Vistas
 
                 // Mostrar los valores obtenidos de la sesión
                 lblUsuarioLogueado.Text = "Bienvenida/o " + usuarioLogueado;
-               
+
                 diasDisponibles = NDXH.ObtenerDiasDisponibles();
                 Session["DiasDisponibles"] = diasDisponibles; // Guardar en sesión para usar en el evento DayRender
 
-               
+                if (dniLogueado == "0")
+                {
+                    Label6.Visible = true;
+                    txtDni.Visible = true;
+                }
+                else
+                {
+                    Label6.Visible = false;
+                    txtDni.Visible = false;
+                }
+
+                // Guardar los valores en ViewState para persistencia durante los postbacks
+                ViewState["UsuarioLogueado"] = usuarioLogueado;
+                ViewState["DniLogueado"] = dniLogueado;
             }
             else
             {
+                usuarioLogueado = ViewState["UsuarioLogueado"] as string;
+              
                 diasDisponibles = (List<DateTime>)Session["DiasDisponibles"];
-            }
 
+                // Si no es la primera carga, asignar el valor del TextBox a dniLogueado si el TextBox es visible
+                if (txtDni.Visible)
+                {
+                    dniLogueado = txtDni.Text;
+                }
+            }
+        
         }
 
        
@@ -96,10 +117,14 @@ namespace Vistas
             string patente = txtPatente.Text;
             string servicio = ddlServicios.SelectedValue.ToString();
             string observacion = txtComentario.Text;
-            string dniLogueado = Session["Dni"] as string;
+            if (txtDni.Visible)
+            {
+              string  dniLogueado = txtDni.Text;
+            }
+            else { string dniLogueado = Session["Dni"] as string; }
           
             int fila = NT.ReservarTurno(diaSeleccionado, horaSeleccionada, dniLogueado, patente, servicio, observacion);
-          
+           
             if (fila >0)
             {
                 string message = "Se AGREGO con exito el turno";
@@ -116,8 +141,27 @@ namespace Vistas
             txtComentario.Text = "";
             clTurnosDisponibles.SelectedDate = DateTime.MinValue; // Deselecciona la fecha en el Calendar
             ddlServicios.SelectedIndex = -1;
+            txtDni.Text = "";
             diasDisponibles = NDXH.ObtenerDiasDisponibles();
             Session["DiasDisponibles"] = diasDisponibles;
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(usuarioLogueado + " " + dniLogueado);
+            if (usuarioLogueado == "Matias De Stefano")
+            {
+                Session["Usuario"] = usuarioLogueado;
+                Session["Dni"] = "0";
+
+                Response.Redirect("Administrador.aspx");
+            }
+            else {
+                Session["Usuario"] = usuarioLogueado;
+                Session["Dni"] = dniLogueado;
+
+                Response.Redirect("Clientes.aspx");
+            }
         }
     }
 }

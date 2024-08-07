@@ -28,7 +28,7 @@ namespace Dao
                 cmd.Parameters.AddWithValue("@HashContraseña", cli.Contraseña1);
              
                 int fila = cmd.ExecuteNonQuery();
-                MessageBox.Show(fila.ToString());
+               
                 return fila;
             }
         }

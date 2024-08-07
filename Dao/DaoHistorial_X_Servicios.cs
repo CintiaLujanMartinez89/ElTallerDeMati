@@ -55,7 +55,7 @@ namespace Dao
             using (SqlConnection connection = cn.ObtenerConexion())
             {
                 string query = "INSERT INTO Historial_X_Servicios (Id_Historial_HXS, [Dni_HXS], [Patente_Moto_HXS], [Id_Servicio_HXS], [Fecha_Realizacion_HXS], [Kilometraje_HXS]) VALUES (@idHistorial, @Dni, @Patente, @IdServicio, @FechaRealizacion, @Kilometraje)";
-
+                MessageBox.Show(query);
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@idHistorial", obj.idHistorial1);
                 command.Parameters.AddWithValue("@Dni", obj.dni1);

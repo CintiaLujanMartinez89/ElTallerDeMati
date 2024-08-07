@@ -48,17 +48,12 @@ namespace Dao
                 cmd.Parameters.AddWithValue("@IdServicio", servicio);
                 cmd.Parameters.AddWithValue("@Observacion", observacion);
                 cmd.Parameters.AddWithValue("@Asistencia", '0');
-                try
-                {
+              
                     int fila = cmd.ExecuteNonQuery();
+                   
                     return fila;
-                }
-                catch (SqlException ex)
-                {
-                    // Manejar la excepción, por ejemplo, registrarla o mostrar un mensaje de error
-                    Console.WriteLine("Error al reservar el turno: " + ex.Message);
-                    return 0;
-                }
+              
+               
             }
         }
 

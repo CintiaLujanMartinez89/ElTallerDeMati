@@ -52,6 +52,8 @@ namespace Vistas
                 txtEmail.Text = "";
                 txtPassword.Text = "";
 
+                string messag = "Usuario Registrado con exito!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{messag}');", true);
                 Response.Redirect("Ingresar.aspx");
             }
             else

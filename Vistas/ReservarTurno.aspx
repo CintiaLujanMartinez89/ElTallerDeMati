@@ -40,8 +40,7 @@
             <nav>
                 <a href="#">
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Inicio.aspx">Salir</asp:HyperLink>
-                &nbsp;&nbsp;&nbsp;<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Clientes.aspx">Volver</asp:HyperLink>
-                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="lblUsuarioLogueado" runat="server" Font-Bold="True" ForeColor="White">USUARIO LOGUEADO</asp:Label>
                  </a>&nbsp;</nav>
         </header>
@@ -70,6 +69,11 @@
                             </asp:RadioButtonList>
                         </td>
                         <td>
+                            <asp:Label ID="Label6" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Dni:" Visible="False"></asp:Label>
+                            <br />
+                            <asp:TextBox ID="txtDni" runat="server" TextMode="Number" Visible="False"></asp:TextBox>
+                            <br />
+                            <br />
                             <asp:Label ID="Label4" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Patente:"></asp:Label>
                             <br />
                             <asp:TextBox ID="txtPatente" runat="server"></asp:TextBox>
@@ -93,23 +97,13 @@
                 <br />
                 <br />
                 <asp:Button ID="Button1" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Reservar" OnClick="Button1_Click" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="btnVolver" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Volver" OnClick="btnVolver_Click" />
                 <br />
         
              
             </section>
             
-             <section class="intro">
-        
-             
-                 <br />
-                 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <br />
-                 <br />
-                 <br />
-        
-             
-            </section>
         </div>
     </form>
 </body>
