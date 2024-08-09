@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -44,6 +45,28 @@ namespace Dao
 
                 return fila;
             }
+        }
+
+        public int EliminarMoto(Motos obj)
+        {
+            int fila = 0;
+            string query = "UPDATE MOTOS SET Estado_M = 0 WHERE Patente_Moto_M = @Patente";
+
+            // Usa un bloque using para asegurarte de que los recursos se liberen adecuadamente
+            using (SqlConnection connection = cn.ObtenerConexion())
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Agrega el parámetro a la consulta
+                    command.Parameters.AddWithValue("@Patente", obj.patente1);
+
+                    // Ejecuta la consulta y obtiene el número de filas afectadas
+                    fila = command.ExecuteNonQuery();
+                }
+            }
+
+            // Devuelve el número de filas afectadas
+            return fila;
         }
     }
 }

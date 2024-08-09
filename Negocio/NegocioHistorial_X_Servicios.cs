@@ -43,6 +43,10 @@ namespace Negocio
             DHXS.eliminarHistorialPorTurno(dni, dia, patente);
         }
 
+       public void GuardaObservacion(string dni, DateTime dia, string patente, string observacion)
+        {
+            DHXS.GuardaObservacion(dni, dia, patente, observacion);
+        }
     }
 
 }

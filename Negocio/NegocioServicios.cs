@@ -27,9 +27,9 @@ namespace Negocio
             return DS.AgregarServ( idServicio, nombre, descripcion,precio);
         }
 
-       public void  ActualizarServicio(Entidades.Servicios obj)
+       public int ActualizarServicio(Entidades.Servicios obj)
         {
-            DS.ActualizarServ(obj);
+           return DS.ActualizarServ(obj);
         }
     }
 }

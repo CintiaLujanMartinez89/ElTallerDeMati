@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Entidades;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -61,6 +62,34 @@ namespace Vistas
         {
             Session["UrlPaginaPrevia"] = Request.UrlReferrer.ToString();
             Response.Redirect("AgregarMoto.aspx");
+        }
+        private void MostrarExito(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', 'success');", true);
+        }
+        protected void gvMisMotos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string patente = ((Label)gvMisMotos.Rows[e.RowIndex].FindControl("lblPatente")).Text;
+            Motos obj = new Motos { patente1 = patente };
+
+            if (NM.EliminarMoto(obj) > 0)
+            {
+                MostrarExito("Se Elimino Moto!");
+                mostrarTablaMotos(dniLogueado);
+            }
+        }
+
+        protected void gvMisTurnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string dia = ((Label)gvMisMotos.Rows[e.RowIndex].FindControl("lblFecha")).Text;
+            string hora = ((Label)gvMisMotos.Rows[e.RowIndex].FindControl("lblHora")).Text;
+
+        //    if (NM.EliminarTurno(dia,hora) > 0)
+            {
+                MostrarExito("Se Elimino Turno!");
+                mostrarTablaTurnos(dniLogueado);
+            }
+
         }
     }
 }

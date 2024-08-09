@@ -130,6 +130,7 @@ namespace Dao
         public Turnos obtenerTurnoPorId(string idTurno)
         {
             string consulta = $"  SELECT [Dia_T],[Hora_T],[Dni_T],[Patente_Moto_T],[Id_Servicio_T],[Observacion_T],[Id_Turno_T] FROM TURNOS WHERE Id_Turno_T='{idTurno}' and Asistencia_T='1'";
+           
             SqlCommand command = new SqlCommand(consulta, cn.ObtenerConexion());
             Turnos turno = new Turnos();
 
@@ -147,8 +148,7 @@ namespace Dao
                         turno.IdServicio = reader["Id_Servicio_T"].ToString();
                         turno.Observacion = reader["Observacion_T"].ToString();
                         turno.IdTurno = reader["Id_Turno_T"].ToString();
-
-
+                        MessageBox.Show("consulta en DAOobtenerTurnoPorId " + turno.IdTurno);
                     }
                 }
 

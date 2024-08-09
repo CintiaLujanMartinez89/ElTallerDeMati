@@ -54,7 +54,7 @@ namespace Dao
 
             return fila;
         }
-       public void ActualizarServ(Entidades.Servicios obj)
+       public int ActualizarServ(Entidades.Servicios obj)
         {
             using (SqlCommand cmd = new SqlCommand("spActualizarServicios", cn.ObtenerConexion()))
             {
@@ -64,7 +64,8 @@ namespace Dao
                 cmd.Parameters.AddWithValue("@Descripcion", obj.detalle1);
                 cmd.Parameters.AddWithValue("@Precio",obj.precio1);
 
-                cmd.ExecuteNonQuery();
+               int fila= cmd.ExecuteNonQuery();
+                return fila;
             }
         }
     }

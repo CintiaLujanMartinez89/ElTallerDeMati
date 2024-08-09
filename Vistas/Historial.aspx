@@ -64,7 +64,7 @@
                 <br />
                 <br />
                 <div class="gv-container">
-                    <asp:GridView ID="gvHistorial" CssClass="auto-style9" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="765px" AllowPaging="True" AllowSorting="True">
+                    <asp:GridView ID="gvHistorial" CssClass="auto-style9" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="1200px" AllowPaging="True" AllowSorting="True" HorizontalAlign="Center">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:TemplateField HeaderText="Dni">
@@ -95,6 +95,11 @@
                             <asp:TemplateField HeaderText="Servicio Realizado">
                                 <ItemTemplate>
                                     <asp:Label ID="lblServicio" runat="server" Text='<%# Eval("Nombre_S") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Detalle">
+                                <ItemTemplate>
+                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("Detalle_HXS") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Fecha">

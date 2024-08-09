@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Dao
 {
@@ -19,11 +20,12 @@ namespace Dao
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Dni", dni);
                     command.Parameters.AddWithValue("@Patente", patente);
-
+                    
                     SqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                     {
                         idHistorial = reader["Id_Historial_H"].ToString();
+                    MessageBox.Show("dentro de daoHIstorial "+idHistorial.ToString());
                     }
                 }           
             return idHistorial;
