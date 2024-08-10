@@ -67,7 +67,6 @@ namespace Vistas
         {
             try
             {
-                MessageBox.Show("Entro a GuardarObservacion: " + dni + " " + dia + " " + patente + " " + observacion);
                 NegocioHistorial_X_Servicios NHXS = new NegocioHistorial_X_Servicios();
 
                 NHXS.GuardaObservacion(dni, dia, patente, observacion);
@@ -140,7 +139,7 @@ namespace Vistas
                     obj.kilometraje1 = kilometraje;
                    
                     string cBoxClientID = cBox.ClientID;
-                    MessageBox.Show("antes de entrar a la funcion de java HISTORIAL "+"dni "+obj.dni1+"patente "+obj.patente1+"dia "+dia+"cbox "+ cBoxClientID);
+                  
                     ScriptManager.RegisterStartupScript(this, GetType(), "showObservationPrompt", $"showObservationPrompt('{obj.dni1}', '{dia}', '{obj.patente1}', '{cBoxClientID}');", true);
 
 
@@ -206,6 +205,7 @@ namespace Vistas
 
         private void GuardarSesion()
         {
+            Session["UrlPaginaPrevia"] = Request.UrlReferrer.ToString();
             Session["Usuario"] = usuarioLogueado;
             Session["Dni"] = dniLogueado;
         }

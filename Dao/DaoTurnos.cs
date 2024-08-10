@@ -148,7 +148,6 @@ namespace Dao
                         turno.IdServicio = reader["Id_Servicio_T"].ToString();
                         turno.Observacion = reader["Observacion_T"].ToString();
                         turno.IdTurno = reader["Id_Turno_T"].ToString();
-                        MessageBox.Show("consulta en DAOobtenerTurnoPorId " + turno.IdTurno);
                     }
                 }
 
@@ -180,5 +179,28 @@ namespace Dao
             }
           return (dni, patente);
         }
+
+        public int EliminarTurnoCliente(DateTime dia, TimeSpan hora)
+        {
+            int filasAfectadas = 0;
+            using (SqlConnection connection = cn.ObtenerConexion())
+            {
+                // Define la consulta SQL con parámetros
+                string consulta = @"DELETE FROM Turnos WHERE Dia_T = @Dia AND Hora_T = @Hora";
+
+                using (SqlCommand command = new SqlCommand(consulta, connection))
+                {
+                    command.Parameters.AddWithValue("@Dia", dia.ToString("yyyy-MM-dd"));
+                    command.Parameters.AddWithValue("@Hora", hora.ToString(@"hh\:mm\:ss"));
+
+                    // Ejecuta la consulta y obtiene el número de filas afectadas
+                    filasAfectadas = command.ExecuteNonQuery();
+
+                }
+            }
+
+            return filasAfectadas;
+        }
+
     }
 }

@@ -78,18 +78,45 @@ namespace Vistas
                 mostrarTablaMotos(dniLogueado);
             }
         }
-
+        private void MostrarError(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', 'error');", true);
+        }
         protected void gvMisTurnos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string dia = ((Label)gvMisMotos.Rows[e.RowIndex].FindControl("lblFecha")).Text;
-            string hora = ((Label)gvMisMotos.Rows[e.RowIndex].FindControl("lblHora")).Text;
+            DateTime dia;
+            TimeSpan hora;
 
-        //    if (NM.EliminarTurno(dia,hora) > 0)
+            // Obtén el valor del Label para la fecha
+            if (!DateTime.TryParse(((Label)gvMisTurnos.Rows[e.RowIndex].FindControl("lblFecha")).Text, out dia))
             {
-                MostrarExito("Se Elimino Turno!");
-                mostrarTablaTurnos(dniLogueado);
+                MostrarError("La fecha no es válida.");
+                return;
             }
 
+            // Obtén el valor del Label para la hora
+            string hr = ((Label)gvMisTurnos.Rows[e.RowIndex].FindControl("lblHora")).Text;
+            if (!TimeSpan.TryParse(hr, out hora))
+            {
+                MostrarError("La hora no es válida.");
+                return;
+            }
+
+            // Intenta eliminar el turno
+            int filasAfectadas = NT.EliminarTurnoCliente(dia, hora);
+            if (filasAfectadas > 0)
+            {
+                MostrarExito("¡Se eliminó el turno exitosamente!");
+                mostrarTablaTurnos(dniLogueado);
+
+            }
+            else
+            {
+                MostrarError("No se pudo eliminar el turno. Por favor, inténtelo de nuevo.");
+            }
+
+
         }
+
     }
 }

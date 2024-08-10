@@ -76,7 +76,20 @@
                             <br />
                             <asp:Label ID="Label4" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Patente:"></asp:Label>
                             <br />
-                            <asp:TextBox ID="txtPatente" runat="server"></asp:TextBox>
+                            <asp:DropDownList ID="ddlPatentes" runat="server" DataSourceID="SqlDataSource3" DataTextField="Patente_Moto_M" DataValueField="Patente_Moto_M">
+                            </asp:DropDownList>
+                            <asp:DropDownList ID="ddlPatentes2" runat="server" DataSourceID="SqlDataSource2" DataTextField="Patente_Moto_CXM" DataValueField="Patente_Moto_CXM">
+                            </asp:DropDownList>
+                            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:El_TALLER_DE_MATIConnectionString %>" SelectCommand="SELECT [Patente_Moto_M] FROM [MOTOS] WHERE ([Estado_M] = @Estado_M)">
+                                <SelectParameters>
+                                    <asp:Parameter DefaultValue="true" Name="Estado_M" Type="Boolean" />
+                                </SelectParameters>
+                            </asp:SqlDataSource>
+                            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:El_TALLER_DE_MATIConnectionString %>" SelectCommand="SELECT [Patente_Moto_CXM] FROM [CLIENTES_X_MOTOS] WHERE ([Dni_CXM] = @Dni_CXM)">
+                                <SelectParameters>
+                                    <asp:SessionParameter Name="Dni_CXM" SessionField="Dni" Type="String" />
+                                </SelectParameters>
+                            </asp:SqlDataSource>
                             <br />
                             <br />
                             <asp:Label ID="Label5" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Servicio:"></asp:Label>

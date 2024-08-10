@@ -71,13 +71,9 @@ namespace Dao
         '{obj.fecha_Realizacion1:yyyy-MM-dd}', 
         '{obj.kilometraje1}'";
 
-                MessageBox.Show(query);
                 SqlCommand command = new SqlCommand(query, connection);
-                
-                int estado = command.ExecuteNonQuery();
-
+               int estado = command.ExecuteNonQuery();
             }
-
         }
 
         public void eliminarHistorialPorTurno(string dni, DateTime dia, string patente)
@@ -93,18 +89,12 @@ namespace Dao
         }
         public void GuardaObservacion(string dni, DateTime dia, string patente, string observacion)
         {
-
             using (SqlConnection connection = cn.ObtenerConexion())
-            {
-               
-              
+            {   
                 string query = $"UPDATE Historial_X_Servicios SET Detalle_HXS = '{observacion}' WHERE Dni_HXS = '{dni}' AND Patente_Moto_HXS = '{patente}' AND Fecha_Realizacion_HXS = '{dia}' ";
-                MessageBox.Show(query);
+            
                 SqlCommand command = new SqlCommand(query, connection);
-               
-
                 int fila=command.ExecuteNonQuery();
-                MessageBox.Show("fila "+fila.ToString());
             }
         }
     }

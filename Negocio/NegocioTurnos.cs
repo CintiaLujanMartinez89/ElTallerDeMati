@@ -29,22 +29,27 @@ namespace Negocio
 
         public int EliminarTurno(Turnos obj)
         {
-                return DT.Eliminar(obj);
+            return DT.Eliminar(obj);
         }
 
-        public int cambiarAsistencia(string idTurno,string dia,string hora)
+        public int cambiarAsistencia(string idTurno, string dia, string hora)
         {
             return DT.cambiarAsist(idTurno, dia, hora);
         }
 
-       public Turnos obtenerTurnoPorId(string idTurno)
+        public Turnos obtenerTurnoPorId(string idTurno)
         {
             return DT.obtenerTurnoPorId(idTurno);
         }
-     
-        public (string dni, string patente) BuscarDnixIdTurno(string idTurno,DateTime dia)
+
+        public (string dni, string patente) BuscarDnixIdTurno(string idTurno, DateTime dia)
         {
             return DT.BuscarDnixIdTurno(idTurno, dia);
-       }
+        }
+
+        public int EliminarTurnoCliente(DateTime dia, TimeSpan hora)
+        {
+            return DT.EliminarTurnoCliente(dia, hora);
+        }
     }
 }

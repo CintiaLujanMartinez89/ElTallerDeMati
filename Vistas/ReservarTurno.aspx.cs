@@ -34,12 +34,23 @@ namespace Vistas
                 {
                     Label6.Visible = true;
                     txtDni.Visible = true;
+                 
+                    ddlPatentes.Visible = true;
+                    ddlPatentes.DataSourceID= "SqlDataSource3";
+                    ddlPatentes2.Visible = false;
+                
                 }
                 else
                 {
+                    ddlPatentes2.Visible = true;
+                    ddlPatentes2.DataSourceID = "SqlDataSource2";
+
+                    ddlPatentes.Visible = false;
                     Label6.Visible = false;
                     txtDni.Visible = false;
+           
                 }
+
 
                 // Guardar los valores en ViewState para persistencia durante los postbacks
                 ViewState["UsuarioLogueado"] = usuarioLogueado;
@@ -57,7 +68,7 @@ namespace Vistas
                     dniLogueado = txtDni.Text;
                 }
             }
-        
+           
         }
 
        
@@ -97,7 +108,6 @@ namespace Vistas
             {
           
                 string message = "Por favor, seleccione una fecha.";
-                string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
                 ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', 'error');", true);  // Manejar el caso en que no se seleccionó una fecha
 
                 return;
@@ -112,16 +122,21 @@ namespace Vistas
                 ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);  // Manejar el caso en que no se seleccionó una fecha
                 return;
             }
+            string patente;
+            if (ddlPatentes.Visible == true)
+            {
+               patente= ddlPatentes.SelectedValue;
+            }else { patente = ddlPatentes2.SelectedValue; }
+          
+          
 
-
-            string patente = txtPatente.Text;
             string servicio = ddlServicios.SelectedValue.ToString();
             string observacion = txtComentario.Text;
             if (txtDni.Visible)
             {
-              string  dniLogueado = txtDni.Text;
+              dniLogueado = txtDni.Text;
             }
-            else { string dniLogueado = Session["Dni"] as string; }
+            else {dniLogueado = Session["Dni"] as string; }
           
             int fila = NT.ReservarTurno(diaSeleccionado, horaSeleccionada, dniLogueado, patente, servicio, observacion);
            
@@ -130,17 +145,19 @@ namespace Vistas
                 string message = "Se AGREGO con exito el turno";
                 ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
 
+
             }else
             {
                 string message = "ERROR al agregar Turno";
                 string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
                 ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);
             }
-            txtPatente.Text = "";
+          ddlPatentes.SelectedValue = "0";
             ddlServicios.SelectedValue = "0";
             txtComentario.Text = "";
             clTurnosDisponibles.SelectedDate = DateTime.MinValue; // Deselecciona la fecha en el Calendar
             ddlServicios.SelectedIndex = -1;
+            rbHorarios.ClearSelection();
             txtDni.Text = "";
             diasDisponibles = NDXH.ObtenerDiasDisponibles();
             Session["DiasDisponibles"] = diasDisponibles;
@@ -148,7 +165,7 @@ namespace Vistas
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(usuarioLogueado + " " + dniLogueado);
+          
             if (usuarioLogueado == "Matias De Stefano")
             {
                 Session["Usuario"] = usuarioLogueado;
@@ -157,11 +174,13 @@ namespace Vistas
                 Response.Redirect("Administrador.aspx");
             }
             else {
-                Session["Usuario"] = usuarioLogueado;
-                Session["Dni"] = dniLogueado;
-
+              
+                Session["Usuario"] = ViewState["UsuarioLogueado"] as string;
+                Session["Dni"] = ViewState["DniLogueado"] as string;
+               
                 Response.Redirect("Clientes.aspx");
             }
         }
+
     }
 }

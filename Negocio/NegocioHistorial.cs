@@ -14,5 +14,10 @@ namespace Negocio
         {
            return DH.ObtenerIdHistorial(dni, patente);
         }
+
+        public int AgregarHistorial(string dniLogueado,string  patente)
+        {
+            return DH.Agregar(dniLogueado, patente);
+        }
     }
 }

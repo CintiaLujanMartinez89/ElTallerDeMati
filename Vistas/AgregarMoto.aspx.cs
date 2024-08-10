@@ -13,15 +13,14 @@ namespace Vistas
     {
         NegocioMotos NM = new NegocioMotos();
         NegocioClientes_X_Motos NCXM = new NegocioClientes_X_Motos();
+        NegocioHistorial NH = new NegocioHistorial();
 
         private string usuarioLogueado;
         private string dniLogueado;
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
-            lblMensaje.Text="";
-
-
+         
             if (Session["Usuario"] != null)
             {
                 usuarioLogueado = Session["Usuario"] as string;
@@ -48,8 +47,15 @@ namespace Vistas
                 HyperLink1.NavigateUrl = "~/Inicio.aspx";
             }
         }
-
-        protected void btnSolicitarTurno_Click(object sender, EventArgs e)
+        private void MostrarError(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', 'error');", true);
+        }
+        private void MostrarExito(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', 'success');", true);
+        }
+        protected void btnAgregarMoto_Click(object sender, EventArgs e)
         {
             string patente = txtPatente.Text;
             string marca = txtMarca.Text;
@@ -64,16 +70,36 @@ namespace Vistas
 
                 if (filaNXM == 1)
                 {
-                    lblMensaje.Text = "MOTO agregada con exito!";
+                    if (NH.AgregarHistorial(dniLogueado, patente) > 0)
+                    {
+                        string message = "MOTO agregada con exito!";
+                        MostrarExito(message);
 
-                } else { lblMensaje.Text = "Error al insertar el cliente en CLIENTES_X_MOTOS."; }
+                    }
+                    else
+                    {
+                        string message = "Error al insertar HISTORIAL";
+                        MostrarError(message);
+                    }
+                } else {
+                    string message = "Error al insertar el cliente en CLIENTES_X_MOTOS.";
+                    MostrarError(message);
+                }
 
-            }else { lblMensaje.Text = "Error al agregar MOTO."; }
+            }else
+            {
+                string message = "Error al agregar MOTO.";
+                MostrarError(message);
+            }
 
             txtPatente.Text = "";
             txtMarca.Text = "";
              txtModelo.Text = "";
             txtKm.Text = "";
         }
+
+      
+
+        
     }
 }

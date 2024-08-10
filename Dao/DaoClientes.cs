@@ -16,24 +16,36 @@ namespace Dao
         ConexionBD cn = new ConexionBD();
 
         public int Agregar(Clientes cli)
-        {  using (SqlCommand cmd = new SqlCommand("spInsertarCliente", cn.ObtenerConexion()))
+        {
+            int filasAfectadas = 0;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spInsertarCliente", cn.ObtenerConexion()))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Dni", cli.Dni1);
                     cmd.Parameters.AddWithValue("@Nombre", cli.Nombre1);
-                cmd.Parameters.AddWithValue("@Apellido", cli.Apellido1);
-                cmd.Parameters.AddWithValue("@Domicilio", cli.Domicilio1);
-                cmd.Parameters.AddWithValue("@Telefono", cli.Telefono1);
-                cmd.Parameters.AddWithValue("@Email", cli.Email1);
-                cmd.Parameters.AddWithValue("@HashContraseña", cli.Contraseña1);
-             
-                int fila = cmd.ExecuteNonQuery();
-               
-                return fila;
+                    cmd.Parameters.AddWithValue("@Apellido", cli.Apellido1);
+                    cmd.Parameters.AddWithValue("@Domicilio", cli.Domicilio1);
+                    cmd.Parameters.AddWithValue("@Telefono", cli.Telefono1);
+                    cmd.Parameters.AddWithValue("@Email", cli.Email1);
+                    cmd.Parameters.AddWithValue("@HashContraseña", cli.Contraseña1);
+                  
+                     filasAfectadas = cmd.ExecuteNonQuery();
+                    MessageBox.Show(filasAfectadas.ToString());                 
+                }
+                return filasAfectadas;
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                MessageBox.Show("Error: " + ex.Message);
+                return -1;
             }
         }
-        
-        
+
+
+
         public string BuscarCliente(string dni)
         {
             using (SqlConnection connection = cn.ObtenerConexion())

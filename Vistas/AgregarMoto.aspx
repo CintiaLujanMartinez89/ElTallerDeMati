@@ -11,7 +11,8 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"/>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Incluye tu archivo JavaScript compartido -->
-    <script>function showAlert(message, icon = 'success') {
+    <script>
+        function showAlert(message, icon = 'success') {
             Swal.fire({
                 text: message,
                 icon: icon,
@@ -19,7 +20,9 @@
                 timer: 2000,
                 timerProgressBar: false
             });
-        }</script> <!-- Asegúrate de que la ruta es correcta -->
+        }
+
+    </script> <!-- Asegúrate de que la ruta es correcta -->
 
     <style type="text/css">
         .auto-style7 {
@@ -61,6 +64,8 @@
                         </td>
                         <td class="auto-style8">
                 <asp:TextBox ID="txtPatente" runat="server" ValidationGroup="g1"></asp:TextBox>
+                            <br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPatente" ErrorMessage="*Ingrese Patente" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -69,6 +74,8 @@
                         </td>
                         <td class="auto-style8">
                 <asp:TextBox ID="txtMarca" runat="server" ValidationGroup="g1"></asp:TextBox>
+                            <br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtMarca" ErrorMessage="*Ingrese Marca" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -77,6 +84,8 @@
                         </td>
                         <td class="auto-style8">
                 <asp:TextBox ID="txtModelo" runat="server" ValidationGroup="g1"></asp:TextBox>
+                            <br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtModelo" ErrorMessage="*Ingrese Modelo" ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -85,17 +94,16 @@
                         </td>
                         <td class="auto-style8">
                 <asp:TextBox ID="txtKm" runat="server" TextMode="Number" ValidationGroup="g1"></asp:TextBox>
+                            <br />
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtKm" ErrorMessage="*Ingrese Kilometraje actual o aproximado " ForeColor="Red" ValidationGroup="g1"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                 </table>
                 <br />
                 <br />
-                 <asp:Button ID="btnSolicitarTurno" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Agregar" ValidationGroup="g1" OnClick="btnSolicitarTurno_Click" />
+                 <asp:Button ID="btnAgregarMoto" runat="server" Font-Bold="True" ForeColor="#0033CC" Text="Agregar" ValidationGroup="g1" OnClick="btnAgregarMoto_Click" />
                 <br />
                 <br />
-        
-             
-                <asp:Label ID="lblMensaje" runat="server"></asp:Label>
         
              
             </section>

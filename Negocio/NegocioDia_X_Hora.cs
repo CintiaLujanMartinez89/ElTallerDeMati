@@ -29,5 +29,7 @@ namespace Negocio
         {
             return DDXH.AgregarFechaDisp(fecha, hora);
         }
+
+        
     }
 }

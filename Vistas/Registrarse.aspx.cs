@@ -40,7 +40,7 @@ namespace Vistas
             cli.Contraseña1 = hashContraseñaIngresada;
 
             int fila=NC.AgregarCliente(cli);
-            if (fila > 0)
+            if (fila ==1)
             {
                 string message = "Usuario agregado exitosamente.";
                 ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}');", true);
@@ -55,6 +55,18 @@ namespace Vistas
                 string messag = "Usuario Registrado con exito!";
                 ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{messag}');", true);
                 Response.Redirect("Ingresar.aspx");
+            } else if(fila == -1){
+                string message = "El usuario ya existe!";
+                string icon = "error"; // Cambia el icono a 'error' u otro valor según sea necesario
+                ScriptManager.RegisterStartupScript(this, GetType(), "showAlert", $"showAlert('{message}', '{icon}');", true);
+                txtDni.Text = "";
+                txtNombre.Text = "";
+                txtApellido.Text = "";
+                txtDomicilio.Text = "";
+                txtTelefono.Text = "";
+                txtEmail.Text = "";
+                txtPassword.Text = "";
+                //Response.Redirect("Ingresar.aspx");
             }
             else
             {

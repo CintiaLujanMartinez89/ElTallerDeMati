@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -25,11 +26,33 @@ namespace Dao
                     if (reader.Read())
                     {
                         idHistorial = reader["Id_Historial_H"].ToString();
-                    MessageBox.Show("dentro de daoHIstorial "+idHistorial.ToString());
+                   
                     }
                 }           
             return idHistorial;
         }
 
-    }
+        public int Agregar(string dniLogueado, string patente)
+        {
+            int resultado = 0;
+
+            using (SqlConnection connection = cn.ObtenerConexion())
+            {
+                using (SqlCommand command = new SqlCommand("spAgregarHistorial", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Dni_H", dniLogueado);
+                    command.Parameters.AddWithValue("@Patente_Moto_H", patente);
+                    command.Parameters.AddWithValue("@Estado_H", 1); // Asumiendo que el estado es 1 (true)
+
+                    
+                    resultado = command.ExecuteNonQuery();
+                }
+            }
+
+            return resultado;
+        }
+
+   }
 }
