@@ -74,6 +74,7 @@
     <Content Include="ClientesXMotos.aspx" />
     <Content Include="Fechas.aspx" />
     <Content Include="Historial.aspx" />
+    <Content Include="imgFondo.png" />
     <Content Include="Ingresar.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Registrarse.aspx" />
